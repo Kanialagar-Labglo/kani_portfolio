@@ -1,12 +1,21 @@
 schema: intent-driven
 
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
-#
-#     Use senior-dev sub-agent for all src related work and senior-qa for acceptance tests.
-#     Do not optimize the batch the tasks for senior-dev and senior-qa, call them as many times as necessary in smaller batches as dev and qa work may be interleaved.
+context: |
+  Project: personal developer portfolio website (single page, no routing).
+  Full project rules live in CLAUDE.md at the repository root; follow them.
+
+  Tech stack: React + Vite, JavaScript only (no TypeScript), ES modules.
+  Backend: none initially. Database: none initially. Adding either requires an ADR.
+  Styling/UI: Bootstrap (grid, layout, utilities) + Ant Design (interactive components),
+  plain HTML and CSS. Icons: lucide-react.
+  Testing: TDD during apply; Playwright for end-to-end tests on mobile and desktop viewports.
+
+  Constraints: mobile-first responsive design, lightweight bundle (import only what is used),
+  semantic HTML and meta tags for SEO and accessibility.
+  We use Conventional Commits.
+
+  Use senior-dev sub-agent for all src related work and senior-qa for acceptance tests.
+  Do not optimize the batch the tasks for senior-dev and senior-qa, call them as many times as necessary in smaller batches as dev and qa work may be interleaved.
 
 rules:
   proposal:
