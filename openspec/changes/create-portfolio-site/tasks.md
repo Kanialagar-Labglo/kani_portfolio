@@ -25,8 +25,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 3. Content data and section visibility
 
-- [ ] 3.1 [dev] Add placeholder data modules in `src/data/`: `profile.js` (name, role, tagline, optional photo, bio paragraphs, optional résumé path), `skills.js`, `projects.js`, `experience.js`, `socials.js` (email and social profiles), each clearly marked as placeholder content
-- [ ] 3.2 [dev] TDD `src/lib/sections.js`: derive the ordered list of visible sections (Hero, About, Skills, Projects, Experience, Contact) and hide any section whose data is empty
+- [x] 3.1 [dev] Add placeholder data modules in `src/data/`: `profile.js` (name, role, tagline, optional photo, bio paragraphs, optional résumé path), `skills.js`, `projects.js`, `experience.js`, `socials.js` (email and social profiles), each clearly marked as placeholder content
+- [x] 3.2 [dev] TDD `src/lib/sections.js`: derive the ordered list of visible sections (Hero, About, Skills, Projects, Experience, Contact) and hide any section whose data is empty
 
 ## 4. Page layout (`page-layout`)
 
