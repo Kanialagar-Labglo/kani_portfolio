@@ -19,9 +19,9 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 2. End-to-end test harness
 
-- [ ] 2.1 [qa] Add `playwright.config.js` with projects desktop Chromium, desktop Firefox, Pixel (mobile Chrome), and iPhone (mobile WebKit), using `webServer` to build and run `vite preview` with the production base path
-- [ ] 2.2 [qa] Add shared helpers in `e2e/support/`: open the page, set theme, set viewport width, emulate reduced motion, and run an axe scan that fails on serious or critical violations
-- [ ] 2.3 [qa] Add a smoke test that the page loads with a 200 response in all four projects; `npm run e2e` passes
+- [x] 2.1 [qa] Add `playwright.config.js` with projects desktop Chromium, desktop Firefox, Pixel (mobile Chrome), and iPhone (mobile WebKit), using `webServer` to build and run `vite preview` with the production base path
+- [x] 2.2 [qa] Add shared helpers in `e2e/support/`: open the page, set theme, set viewport width, emulate reduced motion, and run an axe scan that fails on serious or critical violations
+- [x] 2.3 [qa] Add a smoke test that the page loads with a 200 response in all four projects; `npm run e2e` passes
 
 ## 3. Content data and section visibility
 
