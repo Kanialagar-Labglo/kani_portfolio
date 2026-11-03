@@ -9,13 +9,13 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 1. Project setup
 
-- [ ] 1.1 [dev] Add `.nvmrc` (`24`) and fill `package.json`: `"type": "module"`, `"private": true`, `engines.node >=24 <25`, and scripts `dev`, `build`, `preview`, `test`, `test:watch`, `lint`, `format`, `e2e`, `check:size`, `lhci`
-- [ ] 1.2 [dev] Install runtime dependencies (`react`, `react-dom`, `bootstrap`, `antd`, `lucide-react`) and dev dependencies (`vite`, `@vitejs/plugin-react`, `sass`, `vitest`, `jsdom`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`, `eslint` with `react`, `react-hooks`, `jsx-a11y` plugins, `prettier`, `@playwright/test`, `@axe-core/playwright`, `@lhci/cli`); confirm no TypeScript packages or files are added
-- [ ] 1.3 [dev] Add `site.config.js` with `siteUrl` (`https://kanialagar-labglo.github.io/kani_portfolio/`) and `basePath` (`/kani_portfolio/`), and `vite.config.js` with the React plugin, `base` from `basePath`, and Vitest settings (jsdom, setup file with `jest-dom`)
-- [ ] 1.4 [dev] Add `index.html` skeleton (`lang="en"`, viewport meta, metadata placeholders, `<div id="root">`, `<noscript>` message), `src/main.jsx`, and an empty `src/App.jsx`; write one passing smoke test so `npm test` runs green
-- [ ] 1.5 [dev] Add ESLint flat config and Prettier config; `npm run lint` passes
-- [ ] 1.6 [dev] Add `src/styles/bootstrap.scss` importing only functions, variables, maps, mixins, root, reboot, containers, grid, and utilities; add `src/styles/tokens.css` (light/dark custom properties, header height) and `global.css`; import them in `main.jsx` before antd
-- [ ] 1.7 [dev] Confirm `npm run build` and `npm run preview` serve the app under `/kani_portfolio/`
+- [x] 1.1 [dev] Add `.nvmrc` (`24`) and fill `package.json`: `"type": "module"`, `"private": true`, `engines.node >=24 <25`, and scripts `dev`, `build`, `preview`, `test`, `test:watch`, `lint`, `format`, `e2e`, `check:size`, `lhci`
+- [x] 1.2 [dev] Install runtime dependencies (`react`, `react-dom`, `bootstrap`, `antd`, `lucide-react`) and dev dependencies (`vite`, `@vitejs/plugin-react`, `sass`, `vitest`, `jsdom`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`, `eslint` with `react`, `react-hooks`, `jsx-a11y` plugins, `prettier`, `@playwright/test`, `@axe-core/playwright`, `@lhci/cli`); confirm no TypeScript packages or files are added
+- [x] 1.3 [dev] Add `site.config.js` with `siteUrl` (`https://kanialagar-labglo.github.io/kani_portfolio/`) and `basePath` (`/kani_portfolio/`), and `vite.config.js` with the React plugin, `base` from `basePath`, and Vitest settings (jsdom, setup file with `jest-dom`)
+- [x] 1.4 [dev] Add `index.html` skeleton (`lang="en"`, viewport meta, metadata placeholders, `<div id="root">`, `<noscript>` message), `src/main.jsx`, and an empty `src/App.jsx`; write one passing smoke test so `npm test` runs green
+- [x] 1.5 [dev] Add ESLint flat config and Prettier config; `npm run lint` passes
+- [x] 1.6 [dev] Add `src/styles/bootstrap.scss` importing only functions, variables, maps, mixins, root, reboot, containers, grid, and utilities; add `src/styles/tokens.css` (light/dark custom properties, header height) and `global.css`; import them in `main.jsx` before antd
+- [x] 1.7 [dev] Confirm `npm run build` and `npm run preview` serve the app under `/kani_portfolio/`
 
 ## 2. End-to-end test harness
 

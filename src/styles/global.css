@@ -1,0 +1,14 @@
+/* Mobile-first base styles; larger screens build on these with min-width breakpoints. */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}

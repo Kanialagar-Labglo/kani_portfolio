@@ -1,0 +1,22 @@
+/* Design tokens for custom styles. The active theme is set on <html> as data-theme. */
+:root {
+  --header-height: 4rem;
+
+  --color-bg: #ffffff;
+  --color-surface: #f6f7f9;
+  --color-text: #1b1f24;
+  --color-text-muted: #57606a;
+  --color-border: #d0d7de;
+  --color-accent: #0b5cad;
+  --color-focus: #0b5cad;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #0f1419;
+  --color-surface: #161c23;
+  --color-text: #e6edf3;
+  --color-text-muted: #9da7b3;
+  --color-border: #30363d;
+  --color-accent: #6cb6ff;
+  --color-focus: #6cb6ff;
+}
