@@ -30,9 +30,9 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 4. Page layout (`page-layout`)
 
-- [ ] 4.1 [qa] Write failing e2e tests: landmarks (banner, navigation, main, contentinfo, labelled regions), exactly one `h1` and no skipped heading levels, path unchanged when moving between sections, no horizontal scroll and no clipping at 360/768/1024/1440/1920 px, single-column project cards at 360 px, skip link is first focus and moves focus to `main`, and the no-JavaScript message
-- [ ] 4.2 [dev] TDD the page shell in `App.jsx`: `SkipLink`, `header`, `main` containing one labelled `section` per visible section (from 3.2), and `footer`
-- [ ] 4.3 [dev] Apply the mobile-first Bootstrap grid and container layout so the 4.1 tests pass
+- [x] 4.1 [qa] Write failing e2e tests: landmarks (banner, navigation, main, contentinfo, labelled regions), exactly one `h1` and no skipped heading levels, path unchanged when moving between sections, no horizontal scroll and no clipping at 360/768/1024/1440/1920 px, single-column project cards at 360 px, skip link is first focus and moves focus to `main`, and the no-JavaScript message
+- [x] 4.2 [dev] TDD the page shell in `App.jsx`: `SkipLink`, `header`, `main` containing one labelled `section` per visible section (from 3.2), and `footer`
+- [x] 4.3 [dev] Apply the mobile-first Bootstrap grid and container layout so the 4.1 tests pass
 
 ## 5. Theme toggle (`theme-toggle`)
 

@@ -12,3 +12,26 @@ a {
   outline: 3px solid var(--color-focus);
   outline-offset: 2px;
 }
+
+/* Skip link: Bootstrap's visually-hidden-focusable hides it; this places it once focused. */
+.skip-link:focus {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1100;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-focus);
+  border-radius: 0.25rem;
+}
+
+.page-section {
+  padding-block: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-section {
+    padding-block: 4rem;
+  }
+}
