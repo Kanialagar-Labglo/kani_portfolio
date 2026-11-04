@@ -36,11 +36,11 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 5. Theme toggle (`theme-toggle`)
 
-- [ ] 5.1 [qa] Write failing e2e tests: initial theme for dark/light/no system preference, toggle switches the whole page without reload, choice remembered across visits, works when storage is blocked, first painted frame uses the saved theme, toggle visible at every width, accessible names "Switch to dark theme"/"Switch to light theme", Enter key toggles, no colour transition under reduced motion
-- [ ] 5.2 [dev] TDD `src/lib/theme.js`: resolve the theme from saved choice, then system preference, then light; read and write the saved choice safely when storage throws
-- [ ] 5.3 [dev] Add the inline theme boot script to `index.html` that sets `data-bs-theme` and `data-theme` on `<html>` before first paint, using the same resolution order as 5.2
-- [ ] 5.4 [dev] TDD the `useTheme` hook and `ThemeToggle` component (Lucide sun/moon icon, action-based accessible name), and wire antd `ConfigProvider` to `darkAlgorithm`/`defaultAlgorithm`
-- [ ] 5.5 [dev] Make custom styles use the theme tokens and wrap colour transitions in `prefers-reduced-motion: no-preference`; 5.1 tests pass
+- [x] 5.1 [qa] Write failing e2e tests: initial theme for dark/light/no system preference, toggle switches the whole page without reload, choice remembered across visits, works when storage is blocked, first painted frame uses the saved theme, toggle visible at every width, accessible names "Switch to dark theme"/"Switch to light theme", Enter key toggles, no colour transition under reduced motion
+- [x] 5.2 [dev] TDD `src/lib/theme.js`: resolve the theme from saved choice, then system preference, then light; read and write the saved choice safely when storage throws
+- [x] 5.3 [dev] Add the inline theme boot script to `index.html` that sets `data-bs-theme` and `data-theme` on `<html>` before first paint, using the same resolution order as 5.2
+- [x] 5.4 [dev] TDD the `useTheme` hook and `ThemeToggle` component (Lucide sun/moon icon, action-based accessible name), and wire antd `ConfigProvider` to `darkAlgorithm`/`defaultAlgorithm`
+- [x] 5.5 [dev] Make custom styles use the theme tokens and wrap colour transitions in `prefers-reduced-motion: no-preference`; 5.1 tests pass
 
 ## 6. Site navigation (`site-navigation`)
 

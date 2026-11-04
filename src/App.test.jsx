@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App.jsx';
 
 const content = {
@@ -59,6 +60,25 @@ describe('App', () => {
 
     const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);
     expect(headings).toEqual(['About', 'Skills', 'Projects', 'Experience', 'Contact']);
+  });
+
+  it('offers a theme toggle in the header', () => {
+    render(<App content={content} />);
+
+    expect(
+      within(screen.getByRole('banner')).getByRole('button', { name: /^Switch to .* theme$/ }),
+    ).toBeInTheDocument();
+  });
+
+  it('switches theme when the header toggle is chosen', async () => {
+    document.documentElement.setAttribute('data-theme', 'light');
+    render(<App content={content} />);
+
+    await userEvent.click(screen.getByRole('button', { name: 'Switch to dark theme' }));
+
+    expect(screen.getByRole('button', { name: 'Switch to light theme' })).toBeInTheDocument();
+    document.documentElement.removeAttribute('data-theme');
+    document.documentElement.removeAttribute('data-bs-theme');
   });
 
   it('leaves out a section whose data is empty', () => {

@@ -1,8 +1,13 @@
-// Page header. Navigation links, theme toggle, and résumé action are added in task groups 5, 6, and 9.
-export default function Header() {
+import ThemeToggle from '../ThemeToggle/ThemeToggle.jsx';
+
+// Page header. Navigation links and the résumé action are added in task groups 6 and 9.
+export default function Header({ theme, onToggleTheme }) {
   return (
     <header className="site-header">
-      <nav aria-label="Primary" className="container"></nav>
+      <div className="container d-flex align-items-center justify-content-between">
+        <nav aria-label="Primary"></nav>
+        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+      </div>
     </header>
   );
 }

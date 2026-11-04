@@ -8,6 +8,35 @@ a {
   color: var(--color-accent);
 }
 
+/* Theme colour changes ease in only when the visitor has not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+}
+
+/* Reduced motion: no transitions or animations anywhere, including antd components. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.site-header {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+
 :focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 2px;

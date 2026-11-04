@@ -6,6 +6,23 @@
     <!-- Title and metadata are generated from profile data in task group 10. -->
     <title>Portfolio</title>
     <meta name="description" content="Personal developer portfolio." />
+    <script>
+      // Apply the theme before first paint. Same order as resolveTheme in src/lib/theme.js:
+      // saved choice, then system preference, then light.
+      (function () {
+        var saved = null;
+        try {
+          saved = window.localStorage.getItem('theme');
+        } catch (error) {
+          saved = null;
+        }
+        var prefersDark =
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved === 'light' || saved === 'dark' ? saved : prefersDark ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <noscript
