@@ -196,9 +196,18 @@ name from the package's ES modules so unused components are tree-shaken.
 - Smooth scrolling is CSS `scroll-behavior: smooth` inside
   `@media (prefers-reduced-motion: no-preference)`; every section has
   `scroll-margin-top` equal to the header height (a CSS custom property).
-- `useActiveSection` uses one `IntersectionObserver` over the visible sections
-  and returns the current id; the matching link gets `aria-current="location"`
-  and an active style.
+- `useActiveSection` listens to `scroll` and `resize` (passive, at most one
+  update per animation frame) and passes section positions to a pure function
+  (`lib/activeSection.js`): the active section is the last one whose top has
+  reached a reading line 30% down the viewport, or the last section when the
+  page is scrolled to the bottom. It returns the current id; the matching link
+  gets `aria-current="location"` and an active style.
+- In-page links opened directly (for example `/#projects`) are scrolled to once
+  React has rendered the sections, because the browser's own jump happens
+  before the section exists.
+- Inside the mobile `Drawer`, choosing a link closes the drawer first and
+  scrolls after it has closed, because the page cannot scroll while the drawer
+  is open.
 - The list of visible sections is derived once by a pure function
   (`lib/sections.js`) from the data modules, so a section with no data
   disappears from both `main` and the navigation.
@@ -206,7 +215,10 @@ name from the package's ES modules so unused components are tree-shaken.
   Choosing a link closes the drawer; focus is explicitly returned to the menu
   button on close.
 - **Alternatives:** JavaScript `scrollIntoView` for all navigation — needs manual
-  history handling; a scroll-spy library — unnecessary dependency.
+  history handling; a scroll-spy library — unnecessary dependency;
+  `IntersectionObserver` for the active section — rejected during apply because
+  it does not fire when the visitor reaches the very bottom of the page, so a
+  short last section (Contact) would never become active.
 
 ### D7. Résumé download with a verified-file fallback
 

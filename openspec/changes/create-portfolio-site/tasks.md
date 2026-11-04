@@ -46,7 +46,7 @@ Run all npm commands under Node 24 (`nvm use`).
 
 - [x] 6.1 [qa] Write failing e2e tests: sticky header while scrolling, one link per visible section in page order, section heading not covered after a jump, smooth vs instant scrolling by motion preference, active link highlighted with `aria-current` and only one marked, address updates to `#section` on click, deep link `#projects` opens at Projects, scrolling leaves the address unchanged, site name returns to top, mobile menu below 768 px (closes on link, Escape, outside tap; focus contained; focus returns to menu button), inline links at 1024 px
 - [x] 6.2 [dev] TDD the `Header` and `NavLinks` components rendering anchor links from the visible sections, the site-name link to top, and the sticky header styles with `scroll-margin-top` and CSS smooth scrolling under `prefers-reduced-motion: no-preference`
-- [x] 6.3 [dev] TDD the `useActiveSection` hook (one `IntersectionObserver`, returns the current section id) and mark the active link with `aria-current="location"`
+- [x] 6.3 [dev] TDD the `useActiveSection` hook (frame-throttled scroll listener plus pure `pickActiveSection`, returns the current section id) and mark the active link with `aria-current="location"`
 - [x] 6.4 [dev] TDD the mobile menu: menu button below 768 px opening an antd `Drawer` with the nav links, closing on link choice, and returning focus to the menu button on close; theme toggle stays outside the drawer
 - [x] 6.5 [dev] Make all 6.1 tests pass in all four browser projects
 
