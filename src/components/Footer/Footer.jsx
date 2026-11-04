@@ -1,11 +1,13 @@
-// Page footer. Social links are added in task 8.2.
-export default function Footer({ ownerName }) {
+import SocialLinks from '../SocialLinks/SocialLinks.jsx';
+
+export default function Footer({ ownerName, socials = [] }) {
   return (
     <footer className="site-footer">
-      <div className="container">
+      <div className="container footer-inner">
         <p className="m-0">
           © {new Date().getFullYear()} {ownerName}
         </p>
+        {socials.length > 0 && <SocialLinks socials={socials} />}
       </div>
     </footer>
   );

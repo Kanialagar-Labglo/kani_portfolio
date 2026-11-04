@@ -15,4 +15,18 @@ describe('Footer', () => {
 
     expect(screen.getByRole('contentinfo')).toHaveTextContent('© 2027 Alex Doe');
   });
+
+  it("shows the owner's social links", () => {
+    render(
+      <Footer
+        ownerName="Alex Doe"
+        socials={[{ platform: 'LinkedIn', url: 'https://www.linkedin.com/in/alex' }]}
+      />,
+    );
+
+    expect(screen.getByRole('link', { name: /^LinkedIn\b/ })).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/in/alex',
+    );
+  });
 });

@@ -6,12 +6,12 @@ import { useTheme } from './hooks/useTheme.js';
 import { useActiveSection } from './hooks/useActiveSection.js';
 import SkipLink from './components/SkipLink/SkipLink.jsx';
 import Header from './components/Header/Header.jsx';
-import PageSection from './components/PageSection/PageSection.jsx';
 import Hero from './components/Hero/Hero.jsx';
 import About from './components/About/About.jsx';
 import Skills from './components/Skills/Skills.jsx';
 import Projects from './components/Projects/Projects.jsx';
 import Experience from './components/Experience/Experience.jsx';
+import Contact from './components/Contact/Contact.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
 const MAIN_ID = 'main';
@@ -28,9 +28,10 @@ function renderSection(section, content, visibleSectionIds) {
       return <Projects projects={content.projects} />;
     case 'experience':
       return <Experience experience={content.experience} />;
+    case 'contact':
+      return <Contact contact={content.contact} socials={content.socials} />;
     default:
-      // Contact content is added in task group 8.
-      return <PageSection id={section.id} heading={section.label} />;
+      return null;
   }
 }
 
@@ -67,7 +68,7 @@ export default function App({ content = defaultContent }) {
           <Fragment key={section.id}>{renderSection(section, content, visibleSectionIds)}</Fragment>
         ))}
       </main>
-      <Footer ownerName={content.profile.name} />
+      <Footer ownerName={content.profile.name} socials={content.socials} />
     </ConfigProvider>
   );
 }

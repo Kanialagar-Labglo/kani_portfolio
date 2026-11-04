@@ -63,8 +63,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 8. Contact links (`contact-links`)
 
-- [ ] 8.1 [qa] Write failing e2e tests: email link has a `mailto:` address, social links open in a new tab with no opener access, icon-only links have platform names, no form in the Contact section
-- [ ] 8.2 [dev] TDD the `Contact` and `SocialLinks` components (Lucide icons, accessible platform labels, `mailto:` email link); reuse `SocialLinks` in the footer; 8.1 tests pass
+- [x] 8.1 [qa] Write failing e2e tests: email link has a `mailto:` address, social links open in a new tab with no opener access, icon-only links have platform names, no form in the Contact section
+- [x] 8.2 [dev] TDD the `Contact` and `SocialLinks` components (Lucide icons, accessible platform labels, `mailto:` email link); reuse `SocialLinks` in the footer; 8.1 tests pass
 
 ## 9. Résumé download (`resume-download`)
 
