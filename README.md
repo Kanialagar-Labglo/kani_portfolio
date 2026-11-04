@@ -1,8 +1,110 @@
-# Intent-Driven Template
+# Kani Portfolio
+
+A fast, accessible, single-page developer portfolio built with React and Vite,
+developed spec-first with OpenSpec.
+
+**Live site:** https://kanialagar-labglo.github.io/kani_portfolio/
+
+## Tech stack
+
+- React + Vite, JavaScript only (no TypeScript), ES modules
+- Bootstrap (layout and utilities) + Ant Design (interactive components)
+- Lucide icons
+- Vitest + React Testing Library (unit), Playwright + axe (end-to-end and accessibility)
+- Lighthouse CI and a bundle-size budget
+- Hosted on GitHub Pages, deployed by GitHub Actions
+- No backend, no database, no router
+
+## Quick start
+
+Requires Node 24 (see `.nvmrc`).
+
+```bash
+nvm use
+npm ci
+npm run dev
+```
+
+## Scripts
+
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Build the production site into `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm test` | Run unit tests once |
+| `npm run test:watch` | Run unit tests in watch mode |
+| `npm run lint` | Lint with ESLint |
+| `npm run format` | Format with Prettier |
+| `npm run e2e` | Run Playwright tests in four browser setups |
+| `npm run e2e:ui` | Open the Playwright UI |
+| `npm run check:size` | Check the gzipped JS/CSS budget (run after `build`) |
+| `npm run lhci` | Build and run the Lighthouse CI audit |
+
+First-time Playwright setup: `npx playwright install --with-deps chromium firefox webkit`
+
+## Editing content
+
+All content lives in `src/data/`. Change the data, not the components.
+
+| File | Contains |
+| --- | --- |
+| `profile.js` | Name, role, description, tagline, photo, bio, résumé path |
+| `skills.js` | Skill groups |
+| `projects.js` | Projects with optional source/live links and screenshots |
+| `experience.js` | Roles (`YYYY-MM` dates; `end: null` for a current role) |
+| `socials.js` | Email and social profile links |
+
+An empty list hides its section and its navigation link.
+
+### Replace before going live
+
+- [ ] Every value in `src/data/` (currently placeholders)
+- [ ] `description` in `profile.js` (150–160 characters, used by search and link previews)
+- [ ] `public/resume.pdf`, your résumé (set `resumePath: null` to hide the download buttons)
+- [ ] `public/og-image.png`, the 1200×630 link-preview image
+- [ ] Optional: a profile photo in `public/` and `photo` in `profile.js`
+
+Restart `npm run dev` after editing `profile.js` or `socials.js` so the page metadata updates.
+
+## Deployment
+
+Every push and pull request runs lint, unit tests, build, the size budget,
+Playwright, and Lighthouse (`.github/workflows/ci-deploy.yml`). A push to `main`
+that passes every check is deployed to GitHub Pages.
+
+**One-time setup:** in the repository, go to **Settings → Pages** and set
+**Source** to **GitHub Actions**.
+
+**Custom domain:** change `siteUrl` and `basePath` in `site.config.js`.
+
+## Quality targets
+
+| Check | Target |
+| --- | --- |
+| Lighthouse (mobile) | Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100 |
+| Core Web Vitals | LCP < 2.5 s, CLS < 0.1 |
+| Bundle (gzipped) | JS ≤ 200 KB, CSS ≤ 40 KB |
+| Accessibility | No serious or critical axe issues in light and dark themes |
+
+## How this project is built
+
+Features are developed with the intent-driven OpenSpec workflow:
+proposal → specs → design → ADRs → tasks → test-first implementation.
+
+- Change proposals and specs: [`openspec/`](openspec/)
+- Architecture decisions: [`adr/`](adr/)
+- Rules for AI agents and contributors: [`CLAUDE.md`](CLAUDE.md)
+
+The template's own documentation follows.
+
+---
+
+## Development workflow (Intent-Driven Template)
 
 An [OpenSpec](https://github.com/Fission-AI/OpenSpec) and [OpenCode](https://opencode.ai/) template with the `proposal -> specs -> design -> adr -> tasks` workflow enabled, plus optional collaboration workflows for teams that choose to adopt them.
 
-## Walkthrough
+### Walkthrough
 
 [![Spec-Driven Development with OpenSpec and OpenCode](https://img.youtube.com/vi/o1w3V3DElV4/maxresdefault.jpg)](https://www.youtube.com/watch?v=o1w3V3DElV4)
 
@@ -12,14 +114,14 @@ Read the full walkthrough:
 
 [SDD with Multi-Model Spec Review and Glossary](https://intent-driven.dev/blog/2026/06/27/sdd-adversarial-authoring-glossary/)
 
-## How To Use This Template
+### How To Use This Template
 
-### Start A New Project From This Template
+#### Start A New Project From This Template
 
 Clone this repository, open it with OpenCode, and start working from the bundled
 OpenSpec configuration, commands, skills, and schema.
 
-### Add This Template To An Existing Project
+#### Add This Template To An Existing Project
 
 Open your existing project with OpenCode and ask it to install the template:
 
@@ -27,7 +129,7 @@ Open your existing project with OpenCode and ask it to install the template:
 Read and understand https://raw.githubusercontent.com/intent-driven-dev/intent-driven-template/refs/heads/main/INSTALL_TEMPLATE.md and follow the instructions there.
 ```
 
-## What This Template Uses
+### What This Template Uses
 
 - OpenSpec for setup, proposal, specification, design, ADR, and task artifacts.
 - Custom schemas from https://github.com/intent-driven-dev/openspec-schemas.
@@ -50,7 +152,7 @@ Read and understand https://raw.githubusercontent.com/intent-driven-dev/intent-d
 The bundled OpenSpec schema is a local copy of the `intent-driven` schema from
 https://github.com/intent-driven-dev/openspec-schemas/tree/main/openspec/schemas/intent-driven.
 
-## Optional: Enable Superpowers
+### Optional: Enable Superpowers
 
 [Superpowers](https://github.com/obra/superpowers) provides guided practices such
 as brainstorming, planning, debugging, verification, worktrees, and
@@ -68,7 +170,7 @@ To enable it, add the plugin entry to `opencode.json`:
 If your configuration already has a `plugin` array, append the entry while
 preserving your existing plugins and other settings. Restart OpenCode to load it.
 
-## Workflow
+### Workflow
 
 The intent-driven workflow moves through these artifacts in order:
 
@@ -82,11 +184,11 @@ proposal -> specs -> design -> adr -> tasks
 - `adr` records durable architectural decisions.
 - `tasks` turn the accepted intent, behaviour, design, and decisions into work.
 
-## Schema
+### Schema
 
 `openspec/config.yaml` already selects the bundled [`intent-driven` schema](openspec/schemas/intent-driven/schema.yaml). Learn how to tailor artifact workflows in [OpenSpec Custom Schemas](https://intent-driven.dev/blog/2026/02/12/openspec-custom-schemas/).
 
-## Skills
+### Skills
 
 Standard OpenSpec lifecycle skills in `.opencode/skills/` — names are self-explanatory:
 `openspec-new-change`, `openspec-propose`, `openspec-continue-change`, `openspec-explore`,
@@ -108,13 +210,13 @@ Standard OpenSpec lifecycle skills in `.opencode/skills/` — names are self-exp
 
 Example configurations are available in `openspec/config.yaml` and `AGENTS.md`. You can comment/uncomment the skill references to enable them.
 
-## Experimental: Spec As Source
+### Experimental: Spec As Source
 
 The `spec-as-source` skill is an opt-in layer on the intent-driven schema that uses fenced Gherkin in OpenSpec specifications as the source for generating acceptance tests. To enable `spec-as-source` capability add the skill reference under both the `specs` and `tasks` rules in `openspec/config.yaml`.
 
 During `specs`, `spec-as-source` requires `gherkin-authoring` to author the fenced Gherkin scenarios. During `tasks`, it replaces the standard task template with acceptance-test-first work: configure and run the acceptance suite, then implement application work. Use `acceptance-test-authoring` to configure the runner, extraction, linting, and step definitions that execute the specifications. See [Behavior-Driven Development and Spec-Driven Development with OpenSpec](https://intent-driven.dev/blog/2026/07/17/behavior-driven-development-sdd-openspec/).
 
-## Further Reading
+### Further Reading
 
 - Template overview: [Spec-Driven Development with OpenSpec and OpenCode](https://intent-driven.dev/blog/2026/05/10/spec-driven-development-openspec-opencode/)
 - Schema customization: [OpenSpec Custom Schemas](https://intent-driven.dev/blog/2026/02/12/openspec-custom-schemas/)
@@ -125,7 +227,7 @@ During `specs`, `spec-as-source` requires `gherkin-authoring` to author the fenc
 - Brownfield adoption: [Spec-Driven Development with Brownfield Projects](https://intent-driven.dev/blog/2026/03/10/spec-driven-development-brownfield/)
 - SDD + BDD + TDD: [How TDD and BDD Actually Fit Into Spec-Driven Development](https://intent-driven.dev/blog/2026/08/23/tdd-bdd-spec-driven-development/)
 
-## Agents
+### Agents
 
 Specialist agents used within skills, in `.opencode/agent/`:
 

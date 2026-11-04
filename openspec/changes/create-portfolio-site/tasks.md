@@ -91,8 +91,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 12. CI and deployment
 
-- [ ] 12.1 [dev] Add `.github/workflows/ci-deploy.yml`: on push and pull request, Node 24, `npm ci`, lint, unit tests, build, size check, Playwright (with browser install), Lighthouse CI; on push to `main` after all pass, upload `dist/` and deploy with `actions/deploy-pages`
-- [ ] 12.2 [dev] Update `README.md` with a project section: Node 24, setup and scripts, where to edit content (`src/data/`), where to replace `resume.pdf` and `og-image.png`, and how to change `siteUrl`/`basePath`
+- [x] 12.1 [dev] Add `.github/workflows/ci-deploy.yml`: on push and pull request, Node 24, `npm ci`, lint, unit tests, build, size check, Playwright (with browser install), Lighthouse CI; on push to `main` after all pass, upload `dist/` and deploy with `actions/deploy-pages`
+- [x] 12.2 [dev] Update `README.md` with a project section: Node 24, setup and scripts, where to edit content (`src/data/`), where to replace `resume.pdf` and `og-image.png`, and how to change `siteUrl`/`basePath`
 - [ ] 12.3 [owner] Enable GitHub Pages for the repository with "GitHub Actions" as the source (Settings → Pages)
 
 ## 13. Verification
