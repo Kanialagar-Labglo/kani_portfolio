@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { ConfigProvider, theme as antdTheme } from 'antd';
 import { content as defaultContent } from './data/index.js';
 import { getVisibleSections } from './lib/sections.js';
 import { useTheme } from './hooks/useTheme.js';
+import { useActiveSection } from './hooks/useActiveSection.js';
 import SkipLink from './components/SkipLink/SkipLink.jsx';
 import Header from './components/Header/Header.jsx';
 import PageSection from './components/PageSection/PageSection.jsx';
@@ -12,6 +14,15 @@ const MAIN_ID = 'main';
 export default function App({ content = defaultContent }) {
   const sections = getVisibleSections(content);
   const { theme, toggleTheme } = useTheme();
+  const activeId = useActiveSection(sections.map((section) => section.id));
+
+  // The browser tries to jump to a #section before React has rendered it, so jump once rendered.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (id) {
+      document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
+  }, []);
 
   return (
     <ConfigProvider
@@ -20,7 +31,13 @@ export default function App({ content = defaultContent }) {
       }}
     >
       <SkipLink targetId={MAIN_ID} />
-      <Header theme={theme} onToggleTheme={toggleTheme} />
+      <Header
+        siteName={content.profile.name}
+        sections={sections}
+        activeId={activeId}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
       <main id={MAIN_ID} tabIndex={-1}>
         {sections.map((section) =>
           section.id === 'hero' ? (

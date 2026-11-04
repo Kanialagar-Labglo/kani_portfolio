@@ -81,6 +81,29 @@ describe('App', () => {
     document.documentElement.removeAttribute('data-bs-theme');
   });
 
+  it('scrolls to the section named in the address when the page opens', () => {
+    const scrolledTo = [];
+    const original = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = function scrollIntoView() {
+      scrolledTo.push(this.id);
+    };
+    window.history.replaceState(null, '', '#projects');
+
+    render(<App content={content} />);
+
+    expect(scrolledTo).toEqual(['projects']);
+    Element.prototype.scrollIntoView = original;
+    window.history.replaceState(null, '', window.location.pathname);
+  });
+
+  it('leaves a section with no data out of the navigation', () => {
+    render(<App content={{ ...content, experience: [] }} />);
+
+    const nav = screen.getByRole('navigation', { name: 'Primary' });
+    expect(within(nav).queryByRole('link', { name: 'Experience' })).not.toBeInTheDocument();
+    expect(within(nav).getByRole('link', { name: 'Projects' })).toBeInTheDocument();
+  });
+
   it('leaves out a section whose data is empty', () => {
     render(<App content={{ ...content, projects: [] }} />);
 

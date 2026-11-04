@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { openPortfolio } from './support/page.js';
+import { goToSection } from './support/navigation.js';
 
 const SECTION_NAMES = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
@@ -59,11 +60,9 @@ test.describe('No route changes', () => {
       window.__samePageMarker = true;
     });
 
-    for (const id of ['about', 'skills', 'projects', 'experience', 'contact']) {
-      await page.evaluate((sectionId) => {
-        window.location.hash = sectionId;
-      }, id);
-      await expect(page.locator(`#${id}`)).toBeInViewport();
+    for (const name of SECTION_NAMES) {
+      await goToSection(page, name);
+      await expect(page.getByRole('heading', { level: 2, name })).toBeInViewport();
     }
 
     expect(new URL(page.url()).pathname).toBe(path);
