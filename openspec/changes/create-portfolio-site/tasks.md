@@ -76,10 +76,10 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 10. SEO metadata (`seo-metadata`)
 
-- [ ] 10.1 [qa] Write failing e2e tests against the built `index.html` fetched without JavaScript: title format, `lang="en"`, description length 150–160, canonical, Open Graph and Twitter/X tags, theme colours, favicon, JSON-LD `Person`, `robots.txt` pointing to the sitemap, `sitemap.xml` listing the site URL
-- [ ] 10.2 [dev] TDD `src/lib/seo.js`: build title, description, meta tags, JSON-LD, `robots.txt`, and `sitemap.xml` strings from profile, socials, and site config; report missing `siteUrl`
-- [ ] 10.3 [dev] Add the Vite plugin in `vite.config.js` that injects the metadata with `transformIndexHtml`, emits `robots.txt` and `sitemap.xml`, and logs a warning without failing when `siteUrl` is empty
-- [ ] 10.4 [dev] Add placeholder `public/og-image.png` (1200×630) and favicon; 10.1 tests pass
+- [x] 10.1 [qa] Write failing e2e tests against the built `index.html` fetched without JavaScript: title format, `lang="en"`, description length 150–160, canonical, Open Graph and Twitter/X tags, theme colours, favicon, JSON-LD `Person`, `robots.txt` pointing to the sitemap, `sitemap.xml` listing the site URL
+- [x] 10.2 [dev] TDD `src/lib/seo.js`: build title, description, meta tags, JSON-LD, `robots.txt`, and `sitemap.xml` strings from profile, socials, and site config; report missing `siteUrl`
+- [x] 10.3 [dev] Add the Vite plugin in `vite.config.js` that injects the metadata with `transformIndexHtml`, emits `robots.txt` and `sitemap.xml`, and logs a warning without failing when `siteUrl` is empty
+- [x] 10.4 [dev] Add placeholder `public/og-image.png` (1200×630) and favicon; 10.1 tests pass
 
 ## 11. Site quality (`site-quality`)
 

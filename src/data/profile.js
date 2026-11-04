@@ -3,6 +3,9 @@
 export const profile = {
   name: 'Your Name',
   role: 'Software Developer',
+  // Search and link-preview summary: 150 to 160 characters.
+  description:
+    'Placeholder summary: a software developer with a testing background who builds reliable, accessible web apps. Replace this with your own 150-160 characters.',
   tagline: 'I build reliable, accessible web apps, with a tester’s eye for quality.',
   // Optional: { src: 'images/profile.jpg', alt: 'Portrait of Your Name' } (path relative to public/).
   photo: null,
