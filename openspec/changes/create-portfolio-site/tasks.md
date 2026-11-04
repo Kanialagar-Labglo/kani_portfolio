@@ -83,11 +83,11 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 11. Site quality (`site-quality`)
 
-- [ ] 11.1 [qa] Add e2e tests: full-page axe scan in light and dark themes with no serious or critical violations, keyboard-only pass reaching every link and button in logical order with visible focus, project screenshots not requested before scrolling, and the core journey (open, go to Projects, switch theme) in all four projects
-- [ ] 11.2 [dev] Fix any accessibility, focus-visibility, or lazy-loading issues found by 11.1
-- [ ] 11.3 [dev] Add `scripts/check-bundle-size.js` (gzip initial JS and CSS in `dist/` with Node `zlib`; fail above 200 KB JS or 40 KB CSS) and wire it to `npm run check:size`
-- [ ] 11.4 [dev] Add `lighthouserc.cjs` (mobile preset, three runs, assertions: Performance ≥ 0.90, Accessibility ≥ 0.95, Best Practices ≥ 0.95, SEO = 1.00, LCP < 2500 ms, CLS < 0.1) and wire it to `npm run lhci`
-- [ ] 11.5 [dev] Run `npm run build`, `npm run check:size`, and `npm run lhci` locally; reduce imports or assets until every budget passes, recording any budget change as a new decision
+- [x] 11.1 [qa] Add e2e tests: full-page axe scan in light and dark themes with no serious or critical violations, keyboard-only pass reaching every link and button in logical order with visible focus, project screenshots not requested before scrolling, and the core journey (open, go to Projects, switch theme) in all four projects
+- [x] 11.2 [dev] Fix any accessibility, focus-visibility, or lazy-loading issues found by 11.1
+- [x] 11.3 [dev] Add `scripts/check-bundle-size.js` (gzip initial JS and CSS in `dist/` with Node `zlib`; fail above 200 KB JS or 40 KB CSS) and wire it to `npm run check:size`
+- [x] 11.4 [dev] Add `lighthouserc.cjs` (mobile preset, three runs, assertions: Performance ≥ 0.90, Accessibility ≥ 0.95, Best Practices ≥ 0.95, SEO = 1.00, LCP < 2500 ms, CLS < 0.1) and wire it to `npm run lhci`
+- [x] 11.5 [dev] Run `npm run build`, `npm run check:size`, and `npm run lhci` locally; reduce imports or assets until every budget passes, recording any budget change as a new decision
 
 ## 12. CI and deployment
 
