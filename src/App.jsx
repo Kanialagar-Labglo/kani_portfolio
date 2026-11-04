@@ -1,9 +1,10 @@
-import { Fragment, useEffect } from 'react';
-import { ConfigProvider, theme as antdTheme } from 'antd';
+import { Fragment, useCallback, useEffect } from 'react';
+import { ConfigProvider, notification, theme as antdTheme } from 'antd';
 import { content as defaultContent } from './data/index.js';
 import { getVisibleSections } from './lib/sections.js';
 import { useTheme } from './hooks/useTheme.js';
 import { useActiveSection } from './hooks/useActiveSection.js';
+import { useResumeDownload } from './hooks/useResumeDownload.js';
 import SkipLink from './components/SkipLink/SkipLink.jsx';
 import Header from './components/Header/Header.jsx';
 import Hero from './components/Hero/Hero.jsx';
@@ -15,11 +16,14 @@ import Contact from './components/Contact/Contact.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
 const MAIN_ID = 'main';
+const RESUME_NOTICE_KEY = 'resume-unavailable';
 
-function renderSection(section, content, visibleSectionIds) {
+function renderSection(section, content, visibleSectionIds, resume) {
   switch (section.id) {
     case 'hero':
-      return <Hero profile={content.profile} visibleSectionIds={visibleSectionIds} />;
+      return (
+        <Hero profile={content.profile} visibleSectionIds={visibleSectionIds} resume={resume} />
+      );
     case 'about':
       return <About bio={content.profile.bio} />;
     case 'skills':
@@ -40,6 +44,31 @@ export default function App({ content = defaultContent }) {
   const visibleSectionIds = sections.map((section) => section.id);
   const { theme, toggleTheme } = useTheme();
   const activeId = useActiveSection(visibleSectionIds);
+  // Hook form so the notice follows the ConfigProvider theme.
+  const [noticeApi, noticeHolder] = notification.useNotification();
+
+  const showResumeUnavailable = useCallback(() => {
+    noticeApi.open({
+      key: RESUME_NOTICE_KEY,
+      role: 'alert',
+      placement: 'top',
+      title: 'Résumé unavailable',
+      description: (
+        <>
+          The résumé is temporarily unavailable. Please reach out through the Contact section.{' '}
+          <a href="#contact" onClick={() => noticeApi.destroy(RESUME_NOTICE_KEY)}>
+            Go to Contact
+          </a>
+        </>
+      ),
+    });
+  }, [noticeApi]);
+
+  const resume = useResumeDownload({
+    resumePath: content.profile.resumePath,
+    ownerName: content.profile.name,
+    onUnavailable: showResumeUnavailable,
+  });
 
   // The browser tries to jump to a #section before React has rendered it, so jump once rendered.
   useEffect(() => {
@@ -55,17 +84,21 @@ export default function App({ content = defaultContent }) {
         algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
       }}
     >
+      {noticeHolder}
       <SkipLink targetId={MAIN_ID} />
       <Header
         siteName={content.profile.name}
         sections={sections}
         activeId={activeId}
+        resume={resume}
         theme={theme}
         onToggleTheme={toggleTheme}
       />
       <main id={MAIN_ID} tabIndex={-1}>
         {sections.map((section) => (
-          <Fragment key={section.id}>{renderSection(section, content, visibleSectionIds)}</Fragment>
+          <Fragment key={section.id}>
+            {renderSection(section, content, visibleSectionIds, resume)}
+          </Fragment>
         ))}
       </main>
       <Footer ownerName={content.profile.name} socials={content.socials} />

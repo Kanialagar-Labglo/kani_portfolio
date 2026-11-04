@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App.jsx';
@@ -129,6 +129,54 @@ describe('App', () => {
     expect(
       within(screen.getByRole('region', { name: 'Projects' })).getByRole('heading', { level: 3 }),
     ).toHaveTextContent('Weather Dashboard');
+  });
+
+  describe('résumé download', () => {
+    const withResume = { ...content, profile: { ...content.profile, resumePath: 'resume.pdf' } };
+
+    afterEach(() => {
+      vi.unstubAllGlobals();
+    });
+
+    it('is offered in the hero and the header when a résumé is configured', () => {
+      render(<App content={withResume} />);
+
+      expect(
+        within(screen.getByRole('region', { name: 'Alex Doe' })).getByRole('link', {
+          name: 'Download résumé (PDF)',
+        }),
+      ).toBeInTheDocument();
+      expect(
+        within(screen.getByRole('banner')).getByRole('link', { name: 'Download résumé (PDF)' }),
+      ).toBeInTheDocument();
+    });
+
+    it('is not offered when no résumé is configured', () => {
+      render(<App content={{ ...content, profile: { ...content.profile, resumePath: null } }} />);
+
+      expect(screen.queryByRole('link', { name: 'Download résumé (PDF)' })).not.toBeInTheDocument();
+    });
+
+    it('shows an unavailable notice pointing to Contact when the file is missing', async () => {
+      vi.stubGlobal(
+        'fetch',
+        vi.fn().mockResolvedValue({ ok: false, status: 404, headers: new Headers() }),
+      );
+      render(<App content={withResume} />);
+
+      await userEvent.click(
+        within(screen.getByRole('region', { name: 'Alex Doe' })).getByRole('link', {
+          name: 'Download résumé (PDF)',
+        }),
+      );
+
+      const notice = await screen.findByRole('alert');
+      expect(notice).toHaveTextContent('temporarily unavailable');
+      expect(within(notice).getByRole('link', { name: 'Go to Contact' })).toHaveAttribute(
+        'href',
+        '#contact',
+      );
+    });
   });
 
   it('leaves out a section whose data is empty', () => {

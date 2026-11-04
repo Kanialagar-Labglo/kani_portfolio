@@ -1,4 +1,5 @@
 import PageSection from '../PageSection/PageSection.jsx';
+import ResumeButton from '../ResumeButton/ResumeButton.jsx';
 
 const ACTIONS = [
   { sectionId: 'projects', label: 'View projects', className: 'btn-primary-action' },
@@ -6,7 +7,7 @@ const ACTIONS = [
 ];
 
 // First section: name as the page's only h1, role, tagline, optional photo, and actions.
-export default function Hero({ profile, visibleSectionIds }) {
+export default function Hero({ profile, visibleSectionIds, resume }) {
   const actions = ACTIONS.filter((action) => visibleSectionIds.includes(action.sectionId));
 
   return (
@@ -14,13 +15,14 @@ export default function Hero({ profile, visibleSectionIds }) {
       <div className="hero-body">
         <p className="hero-role">{profile.role}</p>
         <p className="hero-tagline">{profile.tagline}</p>
-        {actions.length > 0 && (
+        {(actions.length > 0 || resume) && (
           <div className="hero-actions">
             {actions.map((action) => (
               <a key={action.sectionId} className={action.className} href={`#${action.sectionId}`}>
                 {action.label}
               </a>
             ))}
+            {resume && <ResumeButton resume={resume} className="btn-secondary-action" />}
           </div>
         )}
       </div>

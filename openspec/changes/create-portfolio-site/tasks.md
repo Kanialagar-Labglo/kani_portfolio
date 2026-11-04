@@ -68,11 +68,11 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 9. Résumé download (`resume-download`)
 
-- [ ] 9.1 [dev] Add a placeholder `public/resume.pdf` and set the résumé path in `profile.js`
-- [ ] 9.2 [qa] Write failing e2e tests: download action in Hero and header and inside the mobile menu, download saves `<Firstname>-<Lastname>-Resume.pdf` and the page stays open, no action when no résumé is configured, missing file shows the unavailable notice and downloads nothing, HTML response instead of PDF shows the notice, notice's Contact option scrolls to Contact, notice is announced
-- [ ] 9.3 [dev] TDD `src/lib/resume.js`: build the download file name from the owner's name; check availability with `HEAD` (falling back to `GET` on 405) and accept only an OK response with a PDF content type (mock `fetch` at the boundary)
-- [ ] 9.4 [dev] TDD the `useResumeDownload` hook and `ResumeButton` component (real `<a download>` with Lucide download icon; hidden when not configured; antd notification with a Contact action on failure, in a live region)
-- [ ] 9.5 [dev] Place `ResumeButton` in the Hero, header, and mobile menu, with URLs built from `import.meta.env.BASE_URL`; 9.2 tests pass
+- [x] 9.1 [dev] Add a placeholder `public/resume.pdf` and set the résumé path in `profile.js`
+- [x] 9.2 [qa] Write failing e2e tests: download action in Hero and header and inside the mobile menu, download saves `<Firstname>-<Lastname>-Resume.pdf` and the page stays open, no action when no résumé is configured, missing file shows the unavailable notice and downloads nothing, HTML response instead of PDF shows the notice, notice's Contact option scrolls to Contact, notice is announced
+- [x] 9.3 [dev] TDD `src/lib/resume.js`: build the download file name from the owner's name; check availability with `HEAD` (falling back to `GET` on 405) and accept only an OK response with a PDF content type (mock `fetch` at the boundary)
+- [x] 9.4 [dev] TDD the `useResumeDownload` hook and `ResumeButton` component (real `<a download>` with Lucide download icon; hidden when not configured; antd notification with a Contact action on failure, in a live region)
+- [x] 9.5 [dev] Place `ResumeButton` in the Hero, header, and mobile menu, with URLs built from `import.meta.env.BASE_URL`; 9.2 tests pass
 
 ## 10. SEO metadata (`seo-metadata`)
 

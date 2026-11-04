@@ -31,7 +31,8 @@ test.describe('In-page section navigation', () => {
 
     const links = await sectionLinks(page);
 
-    await expect(links.getByRole('link')).toHaveText(SECTION_LINK_NAMES);
+    // Only the section list: the menu also holds the résumé download.
+    await expect(links.getByRole('listitem').getByRole('link')).toHaveText(SECTION_LINK_NAMES);
   });
 
   test('choosing Projects shows its heading below the header', async ({ page }) => {

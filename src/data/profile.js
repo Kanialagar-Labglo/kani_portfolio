@@ -11,6 +11,6 @@ export const profile = {
     'Placeholder bio paragraph one. Introduce yourself and what you enjoy building.',
     'Placeholder bio paragraph two. Describe your path into software development and what you bring from it.',
   ],
-  // Optional: résumé PDF path relative to public/. Set in task 9.1.
-  resumePath: null,
+  // Optional: résumé PDF path relative to public/. Use null to hide the download buttons.
+  resumePath: 'resume.pdf',
 };

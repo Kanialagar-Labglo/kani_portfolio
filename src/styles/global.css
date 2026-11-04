@@ -135,6 +135,22 @@ a {
   color: var(--color-accent);
 }
 
+.resume-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.header-resume {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 0.375rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 .hero-photo {
   width: 160px;
   height: 160px;

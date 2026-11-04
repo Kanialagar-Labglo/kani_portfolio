@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Drawer } from 'antd';
 import { Menu } from 'lucide-react';
 import NavLinks from '../NavLinks/NavLinks.jsx';
+import ResumeButton from '../ResumeButton/ResumeButton.jsx';
 
 const MENU_ID = 'mobile-menu';
 const ROOT_CLASS = 'mobile-menu-root';
 
 // Section links for small screens, in a drawer that keeps focus inside while open.
-export default function MobileMenu({ sections, activeId, className = '' }) {
+export default function MobileMenu({ sections, activeId, resume, className = '' }) {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
   const pendingSectionRef = useRef(null);
@@ -82,6 +83,13 @@ export default function MobileMenu({ sections, activeId, className = '' }) {
           onNavigate={handleNavigate}
           className="d-flex flex-column gap-3"
         />
+        {resume && (
+          <ResumeButton
+            resume={resume}
+            className="btn-secondary-action mt-4"
+            onChoose={() => setOpen(false)}
+          />
+        )}
       </Drawer>
     </div>
   );
