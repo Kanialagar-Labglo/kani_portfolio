@@ -97,7 +97,7 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 13. Verification
 
-- [ ] 13.1 [dev] Run `npm run lint`, `npm test`, `npm run build`, `npm run check:size`, and `npm run e2e`; all pass
-- [ ] 13.2 [qa] Confirm every spec scenario in `specs/` maps to at least one passing unit or e2e test, and list any gaps
-- [ ] 13.3 [dev] Run `openspec validate create-portfolio-site --type change --strict`
+- [x] 13.1 [dev] Run `npm run lint`, `npm test`, `npm run build`, `npm run check:size`, and `npm run e2e`; all pass
+- [x] 13.2 [qa] Confirm every spec scenario in `specs/` maps to at least one passing unit or e2e test, and list any gaps
+- [x] 13.3 [dev] Run `openspec validate create-portfolio-site --type change --strict`
 - [ ] 13.4 [owner] After the first deployment, check the live site, a social link preview, and a manual pass on a real iPhone
