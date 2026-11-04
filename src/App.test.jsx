@@ -4,10 +4,24 @@ import userEvent from '@testing-library/user-event';
 import App from './App.jsx';
 
 const content = {
-  profile: { name: 'Alex Doe', bio: ['Hello.'] },
+  profile: {
+    name: 'Alex Doe',
+    role: 'Software Developer',
+    tagline: 'I build reliable web apps.',
+    photo: null,
+    bio: ['Hello.'],
+  },
   skillGroups: [{ name: 'Frontend', skills: ['React'] }],
-  projects: [{ title: 'Weather Dashboard' }],
-  experience: [{ role: 'QA Engineer' }],
+  projects: [{ title: 'Inventory Tracker', description: 'Tracks stock.', technologies: ['React'] }],
+  experience: [
+    {
+      role: 'QA Engineer',
+      company: 'Acme Inc',
+      start: '2021-06',
+      end: null,
+      highlights: ['Tested.'],
+    },
+  ],
   contact: { email: 'alex@example.com' },
   socials: [],
 };
@@ -102,6 +116,19 @@ describe('App', () => {
     const nav = screen.getByRole('navigation', { name: 'Primary' });
     expect(within(nav).queryByRole('link', { name: 'Experience' })).not.toBeInTheDocument();
     expect(within(nav).getByRole('link', { name: 'Projects' })).toBeInTheDocument();
+  });
+
+  it('shows whatever the content data says, without component changes', () => {
+    const renamed = {
+      ...content,
+      projects: [{ title: 'Weather Dashboard', description: 'Forecasts.', technologies: [] }],
+    };
+
+    render(<App content={renamed} />);
+
+    expect(
+      within(screen.getByRole('region', { name: 'Projects' })).getByRole('heading', { level: 3 }),
+    ).toHaveTextContent('Weather Dashboard');
   });
 
   it('leaves out a section whose data is empty', () => {

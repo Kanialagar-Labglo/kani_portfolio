@@ -1,7 +1,7 @@
 // Anchor links to the visible sections. Plain anchors give shareable #section addresses.
 export default function NavLinks({ sections, activeId, onNavigate, className = '' }) {
   return (
-    <ul className={`nav-links list-unstyled m-0 ${className}`}>
+    <ul className={`nav-links m-0 ${className}`}>
       {sections.map((section) => (
         <li key={section.id}>
           <a

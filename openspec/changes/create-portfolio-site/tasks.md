@@ -52,14 +52,14 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 7. Portfolio sections (`portfolio-sections`)
 
-- [ ] 7.1 [qa] Write failing e2e tests: section order with footer last, Hero name as `h1` with role and tagline, "View projects" and "Contact" actions scroll to their sections, profile photo alt text, no image when no photo, About paragraphs in order, Skills groups as labels without ratings, project cards with optional links opening in a new tab, Experience newest first with "Present", footer copyright with current year, a section with empty data and its nav link hidden
-- [ ] 7.2 [dev] TDD the `Hero` component (name, role, tagline, optional photo, actions)
-- [ ] 7.3 [dev] TDD the `About` component (one to three bio paragraphs)
-- [ ] 7.4 [dev] TDD the `Skills` component (named groups, antd `Tag` per skill, no ratings)
-- [ ] 7.5 [dev] TDD the `Projects` and `ProjectCard` components (antd `Card`, technology tags, optional source/live links with `target="_blank"` and `rel="noopener noreferrer"`, lazy-loaded screenshot with alt text)
-- [ ] 7.6 [dev] TDD the `Experience` component (antd `Timeline`, newest first, "Present" for no end date, two to four highlights)
-- [ ] 7.7 [dev] TDD the `Footer` component (owner name, current year, social links)
-- [ ] 7.8 [dev] TDD that changing a data entry changes the rendered content without component changes; 7.1 tests pass
+- [x] 7.1 [qa] Write failing e2e tests: section order with footer last, Hero name as `h1` with role and tagline, "View projects" and "Contact" actions scroll to their sections, profile photo alt text, no image when no photo, About paragraphs in order, Skills groups as labels without ratings, project cards with optional links opening in a new tab, Experience newest first with "Present", footer copyright with current year, a section with empty data and its nav link hidden
+- [x] 7.2 [dev] TDD the `Hero` component (name, role, tagline, optional photo, actions)
+- [x] 7.3 [dev] TDD the `About` component (one to three bio paragraphs)
+- [x] 7.4 [dev] TDD the `Skills` component (named groups, antd `Tag` per skill, no ratings)
+- [x] 7.5 [dev] TDD the `Projects` and `ProjectCard` components (semantic `<article>` cards styled with CSS, antd `Tag` technology labels, optional source/live links with `target="_blank"` and `rel="noopener noreferrer"`, lazy-loaded screenshot with alt text)
+- [x] 7.6 [dev] TDD the `Experience` component (semantic ordered-list timeline styled with CSS, newest first, "Present" for no end date, two to four highlights)
+- [x] 7.7 [dev] TDD the `Footer` component (owner name, current year, social links)
+- [x] 7.8 [dev] TDD that changing a data entry changes the rendered content without component changes; 7.1 tests pass
 
 ## 8. Contact links (`contact-links`)
 

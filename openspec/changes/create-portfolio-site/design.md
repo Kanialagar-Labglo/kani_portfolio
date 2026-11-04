@@ -158,9 +158,17 @@ not used.
 ### D4. Ant Design for interactive components
 
 antd provides the interactive pieces: `Button`, `Drawer` (mobile menu),
-`Tag` (skills and technologies), `Card` (projects), `Timeline` (experience), and
-`message`/`notification` (résumé fallback notice). Components are imported by
-name from the package's ES modules so unused components are tree-shaken.
+`Tag` (skills and technologies), and `message`/`notification` (résumé fallback
+notice). Components are imported by name from the package's ES modules so
+unused components are tree-shaken.
+
+Static content is plain semantic HTML styled with the design tokens and the
+Bootstrap grid: project cards are `<article>` elements and the experience
+timeline is an ordered list. This was decided during apply after measuring the
+gzipped JS cost on top of the 147 KB already used: `Card` +25.6 KB,
+`Timeline` +17.7 KB, `Tag` +2.8 KB. With all three plus `notification` the
+bundle reached 199.6 KB before any application code, leaving no room within the
+200 KB budget.
 
 - **Why:** antd's `Drawer` already handles focus containment, Escape, and
   click-outside closing required by the mobile-menu scenarios; its
@@ -169,7 +177,9 @@ name from the package's ES modules so unused components are tree-shaken.
   count toward the JS budget. Mitigated by importing only the components above
   and by the bundle-size check (D10).
 - **Alternatives:** Bootstrap components for everything — lighter but conflicts
-  with the agreed use of antd; headless libraries — more work, not in the stack.
+  with the agreed use of antd; headless libraries — more work, not in the stack;
+  antd `Card` and `Timeline` for static content — rejected during apply for
+  bundle size (see above).
 
 ### D5. Theming: one resolved theme applied to three systems
 

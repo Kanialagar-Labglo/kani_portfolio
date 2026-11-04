@@ -101,8 +101,7 @@ test.describe('Mobile-first responsive layout', () => {
     });
   }
 
-  // Project cards are built in task 7.5; this test is enabled there.
-  test.fixme('project cards stack in a single column at 360px', async ({ page }) => {
+  test('project cards stack in a single column at 360px', async ({ page }) => {
     await openPortfolio(page, { width: 360 });
     const cards = page.getByRole('region', { name: 'Projects' }).getByRole('article');
 
