@@ -1,0 +1,344 @@
+/* Mobile-first base styles; larger screens build on these with min-width breakpoints. */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent);
+}
+
+/* Theme colour changes ease in only when the visitor has not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+}
+
+/* Reduced motion: no transitions or animations anywhere, including antd components. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+
+.site-name {
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current='location'] {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+/* Heading scale (Bootstrap's typography partial is not imported). */
+.page-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.page-section h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-section h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Hero */
+.hero .container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.hero h1 {
+  margin-bottom: 0;
+}
+
+.hero-role {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.hero-tagline {
+  color: var(--color-text-muted);
+  max-width: 40rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-primary-action,
+.btn-secondary-action {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.375rem;
+  border: 2px solid var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-primary-action {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.btn-secondary-action {
+  color: var(--color-accent);
+}
+
+.resume-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.header-resume {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 0.375rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hero-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .hero .container {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .hero h1,
+  .hero-body {
+    grid-column: 1;
+  }
+
+  .hero-photo {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Label lists (skills, technologies) */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.tag-list .ant-tag {
+  margin-inline-end: 0;
+}
+
+/* Project cards */
+.project-card {
+  height: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.project-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-card-body {
+  padding: 1.25rem;
+}
+
+.project-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.project-card-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+/* Experience timeline */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-inline-start: 2px solid var(--color-border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-inline-start: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: -7px;
+  top: 0.4rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.timeline-company {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-period {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.timeline-highlights {
+  padding-inline-start: 1.25rem;
+  margin-bottom: 0;
+}
+
+/* Contact */
+.contact-email {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: 1.5rem;
+  color: var(--color-text-muted);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Keep section headings clear of the sticky header after an in-page jump. */
+.page-section {
+  scroll-margin-top: var(--header-height);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Skip link: Bootstrap's visually-hidden-focusable hides it; this places it once focused. */
+.skip-link:focus {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1100;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-focus);
+  border-radius: 0.25rem;
+}
+
+.page-section {
+  padding-block: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-section {
+    padding-block: 4rem;
+  }
+}

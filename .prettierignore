@@ -1,0 +1,11 @@
+dist/
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+package-lock.json
+openspec/
+adr/
+.opencode/
+.agents/
+*.md

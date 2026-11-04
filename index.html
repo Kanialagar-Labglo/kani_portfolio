@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- The title and the tags at the marker below are generated from src/data by the
+         seo plugin in vite.config.js. Edit the data, not these lines. -->
+    <title>Portfolio</title>
+    <!-- seo:head -->
+    <script>
+      // Apply the theme before first paint. Same order as resolveTheme in src/lib/theme.js:
+      // saved choice, then system preference, then light.
+      (function () {
+        var saved = null;
+        try {
+          saved = window.localStorage.getItem('theme');
+        } catch (error) {
+          saved = null;
+        }
+        var prefersDark =
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved === 'light' || saved === 'dark' ? saved : prefersDark ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript
+      >This portfolio needs JavaScript to display. Please enable JavaScript and reload the
+      page.</noscript
+    >
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

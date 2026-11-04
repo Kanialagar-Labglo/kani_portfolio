@@ -10,6 +10,10 @@ out/
 .nuxt/
 .svelte-kit/
 coverage/
+playwright-report/
+test-results/
+blob-report/
+.lighthouseci/
 
 # Runtime and package-manager caches
 .cache/
