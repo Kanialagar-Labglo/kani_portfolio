@@ -93,11 +93,11 @@ Run all npm commands under Node 24 (`nvm use`).
 
 - [x] 12.1 [dev] Add `.github/workflows/ci-deploy.yml`: on push and pull request, Node 24, `npm ci`, lint, unit tests, build, size check, Playwright (with browser install), Lighthouse CI; on push to `main` after all pass, upload `dist/` and deploy with `actions/deploy-pages`
 - [x] 12.2 [dev] Update `README.md` with a project section: Node 24, setup and scripts, where to edit content (`src/data/`), where to replace `resume.pdf` and `og-image.png`, and how to change `siteUrl`/`basePath`
-- [ ] 12.3 [owner] Enable GitHub Pages for the repository with "GitHub Actions" as the source (Settings → Pages)
+- [x] 12.3 [owner] Enable GitHub Pages for the repository with "GitHub Actions" as the source (Settings → Pages)
 
 ## 13. Verification
 
 - [x] 13.1 [dev] Run `npm run lint`, `npm test`, `npm run build`, `npm run check:size`, and `npm run e2e`; all pass
 - [x] 13.2 [qa] Confirm every spec scenario in `specs/` maps to at least one passing unit or e2e test, and list any gaps
 - [x] 13.3 [dev] Run `openspec validate create-portfolio-site --type change --strict`
-- [ ] 13.4 [owner] After the first deployment, check the live site, a social link preview, and a manual pass on a real iPhone
+- [x] 13.4 [owner] After the first deployment, check the live site, a social link preview, and a manual pass on a real iPhone
