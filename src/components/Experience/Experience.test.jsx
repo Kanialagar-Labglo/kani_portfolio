@@ -42,4 +42,37 @@ describe('Experience', () => {
     expect(screen.getByText('Introduced Playwright.')).toBeInTheDocument();
     expect(screen.getByText('Mentored testers.')).toBeInTheDocument();
   });
+
+  describe('with grouped highlights', () => {
+    const groupedRole = {
+      role: 'Software Developer',
+      company: 'Labglo',
+      start: '2022-07',
+      end: null,
+      highlightGroups: [
+        { name: 'Development', items: ['Built React features.', 'Wrote Python services.'] },
+        { name: 'Quality Assurance', items: ['Ran regression tests.', 'Tracked defects.'] },
+      ],
+    };
+
+    it('names each group under the role, in data order', () => {
+      render(<Experience experience={[groupedRole]} />);
+
+      expect(
+        screen.getAllByRole('heading', { level: 4 }).map((heading) => heading.textContent),
+      ).toEqual(['Development', 'Quality Assurance']);
+    });
+
+    it('lists each group’s highlights in data order', () => {
+      render(<Experience experience={[groupedRole]} />);
+
+      const lists = screen.getAllByRole('list').filter((list) => list.tagName === 'UL');
+      expect(
+        lists.map((list) => [...list.querySelectorAll('li')].map((item) => item.textContent)),
+      ).toEqual([
+        ['Built React features.', 'Wrote Python services.'],
+        ['Ran regression tests.', 'Tracked defects.'],
+      ]);
+    });
+  });
 });

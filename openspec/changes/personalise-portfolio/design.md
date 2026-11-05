@@ -272,9 +272,13 @@ inconsistent behaviour. An animation library was rejected for bundle size.
 - `public/favicon.svg` becomes "AK" in the display style on a blue-to-purple
   gradient tile. It is plain SVG with outlined text paths, so it doesn't depend
   on fonts.
-- The header link shows the AK mark, plus the full name from 768 px up. On small
-  screens the name is visually hidden but still part of the link's accessible
-  name.
+- The header link shows the AK mark, plus the full name from 992 px up. Below
+  that the name is visually hidden but still part of the link's accessible name.
+  This was moved from 768 px during apply: at 768–991 px the seven inline nav
+  links, the name, the résumé action, and the toggle did not fit the 720 px
+  container. In that range the header résumé action also shrinks to its icon,
+  keeping its "Download résumé (PDF)" accessible name, and the nav links sit
+  closer together.
 - `public/og-image.png` (1200×630) is regenerated once with the name, role, and
   the new palette, and committed as a static asset like before.
 

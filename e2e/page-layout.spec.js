@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { openPortfolio } from './support/page.js';
 import { goToSection } from './support/navigation.js';
 
-const SECTION_NAMES = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
+const SECTION_NAMES = ['About Me', 'Skills', 'Projects', 'Experience', 'Education', 'Contact'];
 
 test.describe('Single-page semantic structure', () => {
   test('page exposes banner, navigation, main, and content info landmarks', async ({ page }) => {
@@ -105,11 +105,23 @@ test.describe('Mobile-first responsive layout', () => {
     await openPortfolio(page, { width: 360 });
     const cards = page.getByRole('region', { name: 'Projects' }).getByRole('article');
 
-    const lefts = await cards.evaluateAll((elements) =>
-      elements.map((element) => Math.round(element.getBoundingClientRect().left)),
+    // Single column: every card starts at the same left edge and takes the full content width,
+    // so this holds whether there is one project or many.
+    const boxes = await cards.evaluateAll((elements) =>
+      elements.map((element) => {
+        const content = element.closest('.container').getBoundingClientRect();
+        const card = element.getBoundingClientRect();
+        const style = getComputedStyle(element.closest('.container'));
+        const contentWidth =
+          content.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+        return { left: Math.round(card.left), widthRatio: card.width / contentWidth };
+      }),
     );
-    expect(lefts.length).toBeGreaterThan(1);
-    expect(new Set(lefts).size).toBe(1);
+    expect(boxes.length).toBeGreaterThan(0);
+    expect(new Set(boxes.map((box) => box.left)).size).toBe(1);
+    for (const box of boxes) {
+      expect(box.widthRatio).toBeGreaterThan(0.95);
+    }
   });
 });
 

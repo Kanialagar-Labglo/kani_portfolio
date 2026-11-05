@@ -3,8 +3,8 @@
 
 const OG_IMAGE = { path: 'og-image.png', width: 1200, height: 630 };
 const FAVICON_PATH = 'favicon.svg';
-// Same values as --color-bg in src/styles/tokens.css.
-const THEME_COLORS = { light: '#ffffff', dark: '#0f1419' };
+// Browser UI colour: the dark theme's --color-bg in src/styles/tokens.css, as every first visit is dark.
+export const THEME_COLOR = '#0a0d14';
 
 const escapeAttribute = (value) =>
   String(value)
@@ -58,8 +58,7 @@ export function buildHeadTags({ profile, socials, site }) {
     metaName('description', profile.description),
     siteUrl && `<link rel="canonical" href="${escapeAttribute(siteUrl)}" />`,
     `<link rel="icon" type="image/svg+xml" href="${escapeAttribute(`${basePath}${FAVICON_PATH}`)}" />`,
-    `<meta name="theme-color" media="(prefers-color-scheme: light)" content="${THEME_COLORS.light}" />`,
-    `<meta name="theme-color" media="(prefers-color-scheme: dark)" content="${THEME_COLORS.dark}" />`,
+    `<meta name="theme-color" content="${THEME_COLOR}" />`,
     metaProperty('og:type', 'website'),
     metaProperty('og:title', title),
     metaProperty('og:description', profile.description),

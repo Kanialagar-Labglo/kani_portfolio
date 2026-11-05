@@ -10,7 +10,15 @@ import {
   useShortViewport,
 } from './support/navigation.js';
 
-const SECTION_LINK_NAMES = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
+const SECTION_LINK_NAMES = [
+  'Home',
+  'About Me',
+  'Skills',
+  'Projects',
+  'Experience',
+  'Education',
+  'Contact',
+];
 
 test.describe('Sticky header', () => {
   test('header stays at the top while scrolling to Contact', async ({ page }) => {
@@ -33,6 +41,37 @@ test.describe('In-page section navigation', () => {
 
     // Only the section list: the menu also holds the résumé download.
     await expect(links.getByRole('listitem').getByRole('link')).toHaveText(SECTION_LINK_NAMES);
+  });
+
+  for (const width of [360, 1024]) {
+    test(`links read Home to Contact in order at ${width}px`, async ({ page }) => {
+      await openPortfolio(page, { width });
+
+      const links = await sectionLinks(page);
+
+      await expect(links.getByRole('listitem').getByRole('link')).toHaveText([
+        'Home',
+        'About Me',
+        'Skills',
+        'Projects',
+        'Experience',
+        'Education',
+        'Contact',
+      ]);
+    });
+  }
+
+  test('choosing Home from Contact shows the Hero and marks Home current', async ({ page }) => {
+    await openPortfolio(page, { width: 1024, reducedMotion: true });
+    await useShortViewport(page);
+    await scrollSectionToTop(page, 'contact');
+
+    await goToSection(page, 'Home');
+
+    await expect(page.getByRole('heading', { level: 1 })).toBeInViewport();
+    await expect(
+      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Home' }),
+    ).toHaveAttribute('aria-current', 'location');
   });
 
   test('choosing Projects shows its heading below the header', async ({ page }) => {
@@ -69,7 +108,11 @@ test.describe('Scrolling respects motion preferences', () => {
     await goToSection(page, name);
     await page.waitForTimeout(1000);
     const positions = await page.evaluate(() => window.__scrollPositions);
-    return [...new Set(positions.filter((position) => position > 0))];
+    // Ignore sub-pixel settling (a 1px snap after a jump), which is not an animated scroll.
+    return positions
+      .filter((position) => position > 0)
+      .filter((position, index, all) => index === 0 || Math.abs(position - all[index - 1]) > 1)
+      .filter((position, index, all) => all.indexOf(position) === index);
   }
 
   test('scrolls smoothly by default', async ({ page }) => {
@@ -110,7 +153,10 @@ test.describe('Active section highlighting', () => {
     await openPortfolio(page);
     await useShortViewport(page);
 
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    // Jump straight there: a smooth scroll can be cut short when the mobile menu opens.
+    await page.evaluate(() =>
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }),
+    );
     const links = await sectionLinks(page);
 
     await expect(links.getByRole('link', { name: 'Contact', exact: true })).toHaveAttribute(
@@ -169,7 +215,7 @@ test.describe('Mobile navigation menu', () => {
     await openPortfolio(page);
 
     const nav = page.getByRole('navigation', { name: 'Primary' });
-    await expect(nav.getByRole('link', { name: 'About', exact: true })).toBeHidden();
+    await expect(nav.getByRole('link', { name: 'About Me', exact: true })).toBeHidden();
     await expect(menuButton(page)).toBeVisible();
     await expect(page.getByRole('button', { name: /^Switch to .* theme$/ })).toBeVisible();
   });
@@ -180,10 +226,10 @@ test.describe('Mobile navigation menu', () => {
     await useShortViewport(page);
     await menuButton(page).click();
 
-    await menuDialog(page).getByRole('link', { name: 'About', exact: true }).click();
+    await menuDialog(page).getByRole('link', { name: 'About Me', exact: true }).click();
 
     await expect(menuDialog(page)).toBeHidden();
-    await expect(page.getByRole('heading', { level: 2, name: 'About' })).toBeInViewport();
+    await expect(page.getByRole('heading', { level: 2, name: 'About Me' })).toBeInViewport();
   });
 
   test('Escape closes the menu and returns focus to the menu button', async ({ page }) => {

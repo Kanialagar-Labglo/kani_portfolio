@@ -1,20 +1,39 @@
-// PLACEHOLDER CONTENT: replace with your own skills.
-
 export const skillGroups = [
   {
     name: 'Frontend',
-    skills: ['HTML', 'CSS', 'JavaScript', 'React'],
+    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Bootstrap'],
   },
   {
     name: 'Backend',
-    skills: ['Node.js', 'Express'],
+    skills: ['Python', 'REST API', 'Odoo'],
   },
   {
     name: 'Testing & QA',
-    skills: ['Playwright', 'Test automation', 'Test strategy', 'API testing'],
+    skills: [
+      'Manual Testing',
+      'Playwright',
+      'Postman',
+      'API Testing',
+      'Regression Testing',
+      'Functional Testing',
+      'Smoke Testing',
+      'Test Case Design',
+      'Bug Tracking',
+      'Automation Testing',
+      'End-to-End Testing',
+    ],
   },
   {
     name: 'Tools',
-    skills: ['Git', 'GitHub Actions', 'Vite'],
+    skills: [
+      'Git',
+      'GitHub',
+      'GitHub Actions',
+      'VS Code',
+      'JIRA',
+      'Linux',
+      'Chrome DevTools',
+      'OpenSpec',
+    ],
   },
 ];

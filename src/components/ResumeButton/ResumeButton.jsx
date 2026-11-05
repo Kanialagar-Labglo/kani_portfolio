@@ -19,7 +19,7 @@ export default function ResumeButton({ resume, compact = false, className = '', 
       onClick={handleClick}
     >
       <Download size={18} aria-hidden="true" />
-      {compact ? 'Résumé' : NAME}
+      {compact ? <span className="resume-button-label">Résumé</span> : NAME}
     </a>
   );
 }

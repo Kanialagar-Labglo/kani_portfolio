@@ -68,15 +68,13 @@ test.describe('Search and sharing metadata', () => {
     expect(await meta(page, 'meta[name="twitter:image"]')).toBe(OG_IMAGE_URL);
   });
 
-  test('theme colour is set for light and dark schemes', async ({ page }) => {
+  test('one theme colour is set for the dark default theme', async ({ page }) => {
     await page.goto('./');
 
-    await expect(
-      page.locator('meta[name="theme-color"][media="(prefers-color-scheme: light)"]'),
-    ).toHaveCount(1);
-    await expect(
-      page.locator('meta[name="theme-color"][media="(prefers-color-scheme: dark)"]'),
-    ).toHaveCount(1);
+    const themeColors = page.locator('meta[name="theme-color"]');
+    await expect(themeColors).toHaveCount(1);
+    await expect(themeColors).not.toHaveAttribute('media', /.*/);
+    await expect(themeColors).toHaveAttribute('content', /^#[0-9a-f]{6}$/i);
   });
 
   test('favicon and preview image are served', async ({ page, request }) => {

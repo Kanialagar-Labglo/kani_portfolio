@@ -22,21 +22,16 @@ const blockedStorage = {
 
 describe('resolveTheme', () => {
   it.each([
-    [
-      'saved dark beats a light system preference',
-      { saved: 'dark', systemPrefersDark: false },
-      'dark',
-    ],
-    [
-      'saved light beats a dark system preference',
-      { saved: 'light', systemPrefersDark: true },
-      'light',
-    ],
-    ['dark system preference with nothing saved', { saved: null, systemPrefersDark: true }, 'dark'],
-    ['no dark preference with nothing saved', { saved: null, systemPrefersDark: false }, 'light'],
-    ['an unknown saved value is ignored', { saved: 'purple', systemPrefersDark: true }, 'dark'],
+    ['a saved dark choice is used', { saved: 'dark' }, 'dark'],
+    ['a saved light choice is used', { saved: 'light' }, 'light'],
+    ['nothing saved means dark', { saved: null }, 'dark'],
+    ['an unknown saved value is ignored', { saved: 'purple' }, 'dark'],
   ])('%s', (_case, input, expected) => {
     expect(resolveTheme(input)).toBe(expected);
+  });
+
+  it('ignores the device colour-scheme preference', () => {
+    expect(resolveTheme({ saved: null, systemPrefersDark: false })).toBe('dark');
   });
 });
 

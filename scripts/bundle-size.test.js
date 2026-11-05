@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { checkBudgets, findInitialAssets } from './bundle-size.js';
+import { checkBudgets, findFontFiles, findInitialAssets } from './bundle-size.js';
 
 const html = `<!doctype html>
 <html><head>
@@ -16,6 +16,20 @@ describe('findInitialAssets', () => {
       js: ['assets/index-abc.js', 'assets/vendor-def.js'],
       css: ['assets/index-ghi.css'],
     });
+  });
+});
+
+describe('findFontFiles', () => {
+  it('lists the woff2 fonts in the build, ignoring older woff fallbacks and other files', () => {
+    expect(
+      findFontFiles([
+        'index-abc.js',
+        'mono-latin-400-normal-x1.woff2',
+        'mono-latin-400-normal-x2.woff',
+        'mono-latin-700-normal-y1.woff2',
+        'index-ghi.css',
+      ]),
+    ).toEqual(['mono-latin-400-normal-x1.woff2', 'mono-latin-700-normal-y1.woff2']);
   });
 });
 
@@ -39,5 +53,14 @@ describe('checkBudgets', () => {
 
   it('fails when CSS is over budget', () => {
     expect(checkBudgets({ js: 1024, css: 41 * 1024 }, budgets).failures).toEqual(['css']);
+  });
+
+  it('fails when fonts are over their budget', () => {
+    const result = checkBudgets(
+      { js: 1024, css: 1024, fonts: 61 * 1024 },
+      { ...budgets, fonts: 60 * 1024 },
+    );
+
+    expect(result.failures).toEqual(['fonts']);
   });
 });

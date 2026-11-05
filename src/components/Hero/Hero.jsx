@@ -6,15 +6,20 @@ const ACTIONS = [
   { sectionId: 'contact', label: 'Contact', className: 'btn-secondary-action' },
 ];
 
-// First section: name as the page's only h1, role, tagline, optional photo, and actions.
+// First section: name as the page's only h1, headline (or role), tagline, optional photo, and actions.
 export default function Hero({ profile, visibleSectionIds, resume }) {
   const actions = ACTIONS.filter((action) => visibleSectionIds.includes(action.sectionId));
 
   return (
     <PageSection id="hero" heading={profile.name} headingLevel={1} className="hero">
       <div className="hero-body">
-        <p className="hero-role">{profile.role}</p>
-        <p className="hero-tagline">{profile.tagline}</p>
+        <p className="hero-role">{profile.headline ?? profile.role}</p>
+        <p className="hero-tagline">
+          <span className="hero-prompt" aria-hidden="true">
+            {'> '}
+          </span>
+          {profile.tagline}
+        </p>
         {(actions.length > 0 || resume) && (
           <div className="hero-actions">
             {actions.map((action) => (

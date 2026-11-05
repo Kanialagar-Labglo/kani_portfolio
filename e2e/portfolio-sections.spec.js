@@ -3,6 +3,7 @@ import { profile } from '../src/data/profile.js';
 import { skillGroups } from '../src/data/skills.js';
 import { projects } from '../src/data/projects.js';
 import { experience } from '../src/data/experience.js';
+import { education } from '../src/data/education.js';
 import { openPortfolio } from './support/page.js';
 import { useShortViewport } from './support/navigation.js';
 
@@ -15,7 +16,15 @@ test.describe('Sections appear in a fixed order', () => {
     const ids = await page
       .locator('main > section')
       .evaluateAll((sections) => sections.map((section) => section.id));
-    expect(ids).toEqual(['hero', 'about', 'skills', 'projects', 'experience', 'contact']);
+    expect(ids).toEqual([
+      'hero',
+      'about',
+      'skills',
+      'projects',
+      'experience',
+      'education',
+      'contact',
+    ]);
 
     const footerIsLast = await page.evaluate(() => {
       const footer = document.querySelector('footer');
@@ -26,14 +35,32 @@ test.describe('Sections appear in a fixed order', () => {
   });
 });
 
+test.describe('Content comes from editable data', () => {
+  test('no placeholder content is published', async ({ page }) => {
+    await openPortfolio(page);
+
+    // Visible text plus link targets, where example addresses would hide.
+    const pageText = await page.evaluate(() =>
+      [
+        document.body.innerText,
+        ...[...document.querySelectorAll('a[href]')].map((link) => link.href),
+      ].join('\n'),
+    );
+    for (const placeholder of ['Your Name', 'Placeholder', 'example.com', 'your-username']) {
+      expect(pageText.toLowerCase()).not.toContain(placeholder.toLowerCase());
+    }
+  });
+});
+
 test.describe('Hero introduces the owner', () => {
   test('hero shows the name, role headline, and tagline', async ({ page }) => {
     await openPortfolio(page);
     const hero = region(page, profile.name);
 
     await expect(hero.getByRole('heading', { level: 1 })).toHaveText(profile.name);
-    await expect(hero.getByText(profile.role, { exact: true })).toBeVisible();
-    await expect(hero.getByText(profile.tagline, { exact: true })).toBeVisible();
+    await expect(hero.getByText(profile.headline ?? profile.role, { exact: true })).toBeVisible();
+    // The tagline follows a decorative prompt marker, so match it within its paragraph.
+    await expect(hero.getByText(profile.tagline)).toBeVisible();
   });
 
   test('hero offers View projects and Contact actions', async ({ page }) => {
@@ -65,7 +92,7 @@ test.describe('About tells the owner story', () => {
   test('bio paragraphs are shown in data order', async ({ page }) => {
     await openPortfolio(page);
 
-    await expect(region(page, 'About').locator('p')).toHaveText(profile.bio);
+    await expect(region(page, 'About Me').locator('p')).toHaveText(profile.bio);
   });
 });
 
@@ -170,10 +197,60 @@ test.describe('Experience is a timeline', () => {
 
     for (const [index, entry] of newestFirst.entries()) {
       await expect(entries.nth(index)).toContainText(entry.company);
-      for (const highlight of entry.highlights) {
+      const highlights = entry.highlightGroups
+        ? entry.highlightGroups.flatMap((group) => group.items)
+        : entry.highlights;
+      for (const highlight of highlights) {
         await expect(entries.nth(index)).toContainText(highlight);
       }
     }
+  });
+
+  test('grouped highlights show each group name followed by its highlights', async ({ page }) => {
+    await openPortfolio(page);
+    const groupedRoles = experience.filter((entry) => entry.highlightGroups);
+    test.skip(groupedRoles.length === 0, 'no role in the data uses highlight groups');
+
+    for (const role of groupedRoles) {
+      const entry = region(page, 'Experience')
+        .getByRole('listitem')
+        .filter({ has: page.getByRole('heading', { level: 3, name: role.role }) });
+
+      await expect(entry.getByRole('heading', { level: 4 })).toHaveText(
+        role.highlightGroups.map((group) => group.name),
+      );
+      for (const [index, group] of role.highlightGroups.entries()) {
+        await expect(entry.locator('.timeline-group').nth(index).getByRole('listitem')).toHaveText(
+          group.items,
+        );
+      }
+    }
+  });
+});
+
+test.describe('Education lists qualifications', () => {
+  test('qualifications are listed newest first with institution and year', async ({ page }) => {
+    await openPortfolio(page);
+    const entries = region(page, 'Education').getByRole('listitem');
+    const newestFirst = [...education].sort((a, b) => b.year - a.year);
+
+    await expect(entries.getByRole('heading', { level: 3 })).toHaveText(
+      newestFirst.map((entry) => entry.qualification),
+    );
+    for (const [index, entry] of newestFirst.entries()) {
+      await expect(entries.nth(index)).toContainText(entry.institution);
+      await expect(entries.nth(index)).toContainText(String(entry.year));
+    }
+  });
+
+  test('the navigation links to Education', async ({ page }) => {
+    await openPortfolio(page, { width: 1024 });
+
+    await page
+      .getByRole('navigation', { name: 'Primary' })
+      .getByRole('link', { name: 'Education', exact: true })
+      .click();
+    await expect(page.getByRole('heading', { level: 2, name: 'Education' })).toBeInViewport();
   });
 });
 
