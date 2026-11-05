@@ -22,6 +22,7 @@ const content = {
       highlights: ['Tested.'],
     },
   ],
+  education: [{ qualification: 'MCA', institution: 'City College', year: 2024 }],
   contact: { email: 'alex@example.com' },
   socials: [],
 };
@@ -59,7 +60,15 @@ describe('App', () => {
       .getAllByRole('region')
       .map((region) => region.getAttribute('aria-labelledby'))
       .map((id) => document.getElementById(id).textContent);
-    expect(names).toEqual(['Alex Doe', 'About', 'Skills', 'Projects', 'Experience', 'Contact']);
+    expect(names).toEqual([
+      'Alex Doe',
+      'About Me',
+      'Skills',
+      'Projects',
+      'Experience',
+      'Education',
+      'Contact',
+    ]);
   });
 
   it("shows the owner's name as the only level-one heading", () => {
@@ -73,7 +82,14 @@ describe('App', () => {
     render(<App content={content} />);
 
     const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);
-    expect(headings).toEqual(['About', 'Skills', 'Projects', 'Experience', 'Contact']);
+    expect(headings).toEqual([
+      'About Me',
+      'Skills',
+      'Projects',
+      'Experience',
+      'Education',
+      'Contact',
+    ]);
   });
 
   it('offers a theme toggle in the header', () => {

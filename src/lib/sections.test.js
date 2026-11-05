@@ -6,6 +6,7 @@ const fullContent = {
   skillGroups: [{ name: 'Frontend', skills: ['React'] }],
   projects: [{ title: 'Weather Dashboard' }],
   experience: [{ role: 'QA Engineer' }],
+  education: [{ qualification: 'MCA', institution: 'College', year: 2024 }],
   contact: { email: 'alex@example.com' },
   socials: [{ platform: 'GitHub', url: 'https://github.com/alex' }],
 };
@@ -14,10 +15,11 @@ describe('getVisibleSections', () => {
   it('lists every section in page order when all have content', () => {
     expect(getVisibleSections(fullContent)).toEqual([
       { id: 'hero', label: 'Home' },
-      { id: 'about', label: 'About' },
+      { id: 'about', label: 'About Me' },
       { id: 'skills', label: 'Skills' },
       { id: 'projects', label: 'Projects' },
       { id: 'experience', label: 'Experience' },
+      { id: 'education', label: 'Education' },
       { id: 'contact', label: 'Contact' },
     ]);
   });
@@ -28,6 +30,8 @@ describe('getVisibleSections', () => {
     ['skills', 'every skill group is empty', { skillGroups: [{ name: 'Frontend', skills: [] }] }],
     ['projects', 'there are no projects', { projects: [] }],
     ['experience', 'there is no experience', { experience: [] }],
+    ['education', 'there is no education', { education: [] }],
+    ['education', 'education data is missing', { education: undefined }],
     ['contact', 'there is no email or social link', { contact: { email: '' }, socials: [] }],
   ])('hides %s when %s', (hiddenId, _reason, overrides) => {
     const ids = getVisibleSections({ ...fullContent, ...overrides }).map((section) => section.id);

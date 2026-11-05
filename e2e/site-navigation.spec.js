@@ -10,7 +10,15 @@ import {
   useShortViewport,
 } from './support/navigation.js';
 
-const SECTION_LINK_NAMES = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
+const SECTION_LINK_NAMES = [
+  'Home',
+  'About Me',
+  'Skills',
+  'Projects',
+  'Experience',
+  'Education',
+  'Contact',
+];
 
 test.describe('Sticky header', () => {
   test('header stays at the top while scrolling to Contact', async ({ page }) => {
@@ -169,7 +177,7 @@ test.describe('Mobile navigation menu', () => {
     await openPortfolio(page);
 
     const nav = page.getByRole('navigation', { name: 'Primary' });
-    await expect(nav.getByRole('link', { name: 'About', exact: true })).toBeHidden();
+    await expect(nav.getByRole('link', { name: 'About Me', exact: true })).toBeHidden();
     await expect(menuButton(page)).toBeVisible();
     await expect(page.getByRole('button', { name: /^Switch to .* theme$/ })).toBeVisible();
   });
@@ -180,10 +188,10 @@ test.describe('Mobile navigation menu', () => {
     await useShortViewport(page);
     await menuButton(page).click();
 
-    await menuDialog(page).getByRole('link', { name: 'About', exact: true }).click();
+    await menuDialog(page).getByRole('link', { name: 'About Me', exact: true }).click();
 
     await expect(menuDialog(page)).toBeHidden();
-    await expect(page.getByRole('heading', { level: 2, name: 'About' })).toBeInViewport();
+    await expect(page.getByRole('heading', { level: 2, name: 'About Me' })).toBeInViewport();
   });
 
   test('Escape closes the menu and returns focus to the menu button', async ({ page }) => {

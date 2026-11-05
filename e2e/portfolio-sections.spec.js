@@ -3,6 +3,7 @@ import { profile } from '../src/data/profile.js';
 import { skillGroups } from '../src/data/skills.js';
 import { projects } from '../src/data/projects.js';
 import { experience } from '../src/data/experience.js';
+import { education } from '../src/data/education.js';
 import { openPortfolio } from './support/page.js';
 import { useShortViewport } from './support/navigation.js';
 
@@ -15,7 +16,15 @@ test.describe('Sections appear in a fixed order', () => {
     const ids = await page
       .locator('main > section')
       .evaluateAll((sections) => sections.map((section) => section.id));
-    expect(ids).toEqual(['hero', 'about', 'skills', 'projects', 'experience', 'contact']);
+    expect(ids).toEqual([
+      'hero',
+      'about',
+      'skills',
+      'projects',
+      'experience',
+      'education',
+      'contact',
+    ]);
 
     const footerIsLast = await page.evaluate(() => {
       const footer = document.querySelector('footer');
@@ -82,7 +91,7 @@ test.describe('About tells the owner story', () => {
   test('bio paragraphs are shown in data order', async ({ page }) => {
     await openPortfolio(page);
 
-    await expect(region(page, 'About').locator('p')).toHaveText(profile.bio);
+    await expect(region(page, 'About Me').locator('p')).toHaveText(profile.bio);
   });
 });
 
@@ -215,6 +224,32 @@ test.describe('Experience is a timeline', () => {
         );
       }
     }
+  });
+});
+
+test.describe('Education lists qualifications', () => {
+  test('qualifications are listed newest first with institution and year', async ({ page }) => {
+    await openPortfolio(page);
+    const entries = region(page, 'Education').getByRole('listitem');
+    const newestFirst = [...education].sort((a, b) => b.year - a.year);
+
+    await expect(entries.getByRole('heading', { level: 3 })).toHaveText(
+      newestFirst.map((entry) => entry.qualification),
+    );
+    for (const [index, entry] of newestFirst.entries()) {
+      await expect(entries.nth(index)).toContainText(entry.institution);
+      await expect(entries.nth(index)).toContainText(String(entry.year));
+    }
+  });
+
+  test('the navigation links to Education', async ({ page }) => {
+    await openPortfolio(page, { width: 1024 });
+
+    await page
+      .getByRole('navigation', { name: 'Primary' })
+      .getByRole('link', { name: 'Education', exact: true })
+      .click();
+    await expect(page.getByRole('heading', { level: 2, name: 'Education' })).toBeInViewport();
   });
 });
 

@@ -12,6 +12,7 @@ import About from './components/About/About.jsx';
 import Skills from './components/Skills/Skills.jsx';
 import Projects from './components/Projects/Projects.jsx';
 import Experience from './components/Experience/Experience.jsx';
+import Education from './components/Education/Education.jsx';
 import Contact from './components/Contact/Contact.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
@@ -32,6 +33,8 @@ function renderSection(section, content, visibleSectionIds, resume) {
       return <Projects projects={content.projects} />;
     case 'experience':
       return <Experience experience={content.experience} />;
+    case 'education':
+      return <Education education={content.education} />;
     case 'contact':
       return <Contact contact={content.contact} socials={content.socials} />;
     default:
@@ -88,6 +91,7 @@ export default function App({ content = defaultContent }) {
       <SkipLink targetId={MAIN_ID} />
       <Header
         siteName={content.profile.name}
+        brandInitials={content.profile.brandInitials}
         sections={sections}
         activeId={activeId}
         resume={resume}

@@ -3,7 +3,7 @@ const hasItems = (list) => Array.isArray(list) && list.length > 0;
 // Page order. Each section is shown only when its data has content.
 const SECTIONS = [
   { id: 'hero', label: 'Home', hasContent: () => true },
-  { id: 'about', label: 'About', hasContent: ({ profile }) => hasItems(profile?.bio) },
+  { id: 'about', label: 'About Me', hasContent: ({ profile }) => hasItems(profile?.bio) },
   {
     id: 'skills',
     label: 'Skills',
@@ -12,6 +12,7 @@ const SECTIONS = [
   },
   { id: 'projects', label: 'Projects', hasContent: ({ projects }) => hasItems(projects) },
   { id: 'experience', label: 'Experience', hasContent: ({ experience }) => hasItems(experience) },
+  { id: 'education', label: 'Education', hasContent: ({ education }) => hasItems(education) },
   {
     id: 'contact',
     label: 'Contact',
@@ -21,7 +22,7 @@ const SECTIONS = [
 
 /**
  * List the sections to show, in page order, leaving out any whose data is empty.
- * @param {{ profile?: object, skillGroups?: object[], projects?: object[], experience?: object[], contact?: object, socials?: object[] }} content
+ * @param {{ profile?: object, skillGroups?: object[], projects?: object[], experience?: object[], education?: object[], contact?: object, socials?: object[] }} content
  * @returns {{ id: string, label: string }[]}
  */
 export function getVisibleSections(content) {

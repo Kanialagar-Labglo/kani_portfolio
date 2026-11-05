@@ -22,15 +22,15 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 3. Education (`education`)
 
-- [ ] 3.1 [qa] Write failing e2e tests: Education comes after Experience and before Contact; the MCA (2024) is listed before the B.Sc. (2021) with institutions and years; there is an "Education" nav link
-- [ ] 3.2 [dev] TDD `src/lib/education.js` `sortByYearDesc` (data order does not decide display order; input unchanged)
-- [ ] 3.3 [dev] TDD the `Education` component (ordered list of cards; qualification as `h3`, institution, year) using `PageSection`
-- [ ] 3.4 [dev] TDD `src/lib/sections.js`: add Education between Experience and Contact, hidden when the data is empty; rename the About label to "About Me"; render `Education` in `App.jsx`; 3.1 passes
+- [x] 3.1 [qa] Write failing e2e tests: Education comes after Experience and before Contact; the MCA (2024) is listed before the B.Sc. (2021) with institutions and years; there is an "Education" nav link
+- [x] 3.2 [dev] TDD `src/lib/education.js` `sortByYearDesc` (data order does not decide display order; input unchanged)
+- [x] 3.3 [dev] TDD the `Education` component (ordered list of cards; qualification as `h3`, institution, year) using `PageSection`
+- [x] 3.4 [dev] TDD `src/lib/sections.js`: add Education between Experience and Contact, hidden when the data is empty; rename the About label to "About Me"; render `Education` in `App.jsx`; 3.1 passes
 
 ## 4. Navigation (`site-navigation`)
 
 - [ ] 4.1 [qa] Update e2e: nav links read Home, About Me, Skills, Projects, Experience, Education, Contact in order (inline and in the mobile menu); choosing Home from Contact brings the Hero into view and marks Home current; update section-name lists in the existing navigation and layout tests
-- [ ] 4.2 [dev] Make the About section heading "About Me" to match its nav label; update the affected unit tests; 4.1 passes
+- [x] 4.2 [dev] Make the About section heading "About Me" to match its nav label; update the affected unit tests; 4.1 passes
 
 ## 5. WhatsApp contact (`contact-links`)
 

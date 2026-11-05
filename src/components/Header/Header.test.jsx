@@ -27,6 +27,23 @@ describe('Header', () => {
     expect(screen.getByRole('link', { name: 'Alex Doe' })).toHaveAttribute('href', '#hero');
   });
 
+  it('shows the brand initials as a mark while the link is named after the owner', () => {
+    renderHeader({ brandInitials: 'AD' });
+
+    const link = screen.getByRole('link', { name: 'Alex Doe' });
+    expect(within(link).getByText('AD')).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('keeps the full résumé name on the header action', () => {
+    const resume = { href: 'resume.pdf', fileName: 'Alex-Doe-Resume.pdf', startDownload: () => {} };
+    renderHeader({ resume });
+
+    const banner = screen.getByRole('banner');
+    expect(
+      within(banner).getAllByRole('link', { name: 'Download résumé (PDF)' }).length,
+    ).toBeGreaterThan(0);
+  });
+
   it('lists the section links in the primary navigation', () => {
     renderHeader();
 

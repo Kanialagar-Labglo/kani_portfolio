@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { openPortfolio } from './support/page.js';
 import { goToSection } from './support/navigation.js';
 
-const SECTION_NAMES = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
+const SECTION_NAMES = ['About Me', 'Skills', 'Projects', 'Experience', 'Education', 'Contact'];
 
 test.describe('Single-page semantic structure', () => {
   test('page exposes banner, navigation, main, and content info landmarks', async ({ page }) => {
