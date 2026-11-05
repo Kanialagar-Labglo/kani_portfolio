@@ -9,16 +9,16 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 1. Owner content (`portfolio-sections`)
 
-- [ ] 1.1 [dev] Write a failing data-validation unit test over `src/data`: no "Your Name", "Placeholder", "example.com", or "your-username" in any string; description 150–160 characters; each highlight group has 2–4 items and each role has 2–4 groups; education entries have qualification, institution, and a numeric year
-- [ ] 1.2 [dev] Fill `profile.js` (name, role "Full-Stack Developer", headline, tagline, description, the two approved About paragraphs, `brandInitials: 'AK'`, `photo: null`, `resumePath: 'resume.pdf'`), `skills.js` (four groups, each skill once), `projects.js` (Personal Portfolio Website only), and `socials.js` (email, GitHub, LinkedIn, `contact.whatsapp` number and greeting) exactly as approved in the proposal; remove the placeholder comments
-- [ ] 1.3 [dev] Fill `experience.js` with the Labglo role (July 2022, current) using `highlightGroups` Development, Quality Assurance, and Collaboration as approved, and add `src/data/education.js` (MCA 2024, B.Sc. 2021) to `content` in `src/data/index.js`; 1.1 passes
-- [ ] 1.4 [qa] Add an e2e scan that the rendered page contains none of the placeholder strings
+- [x] 1.1 [dev] Write a failing data-validation unit test over `src/data`: no "Your Name", "Placeholder", "example.com", or "your-username" in any string; description 150–160 characters; each highlight group has 2–4 items and each role has 2–4 groups; education entries have qualification, institution, and a numeric year
+- [x] 1.2 [dev] Fill `profile.js` (name, role "Full-Stack Developer", headline, tagline, description, the two approved About paragraphs, `brandInitials: 'AK'`, `photo: null`, `resumePath: 'resume.pdf'`), `skills.js` (four groups, each skill once), `projects.js` (Personal Portfolio Website only), and `socials.js` (email, GitHub, LinkedIn, `contact.whatsapp` number and greeting) exactly as approved in the proposal; remove the placeholder comments
+- [x] 1.3 [dev] Fill `experience.js` with the Labglo role (July 2022, current) using `highlightGroups` Development, Quality Assurance, and Collaboration as approved, and add `src/data/education.js` (MCA 2024, B.Sc. 2021) to `content` in `src/data/index.js`; 1.1 passes
+- [x] 1.4 [qa] Add an e2e scan that the rendered page contains none of the placeholder strings
 
 ## 2. Hero headline and grouped experience (`portfolio-sections`)
 
 - [ ] 2.1 [qa] Update e2e: the Hero shows the name, headline, and tagline; the Labglo role shows its three group names, each followed by its highlights in data order
 - [ ] 2.2 [dev] TDD `Hero`: show `profile.headline`, falling back to `profile.role` when it is absent
-- [ ] 2.3 [dev] TDD `Experience`: render `highlightGroups` as an `h4` per group followed by its list, and keep the flat `highlights` list working; heading order stays h2 → h3 → h4
+- [x] 2.3 [dev] TDD `Experience`: render `highlightGroups` as an `h4` per group followed by its list, and keep the flat `highlights` list working; heading order stays h2 → h3 → h4
 
 ## 3. Education (`education`)
 

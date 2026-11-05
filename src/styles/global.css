@@ -265,6 +265,16 @@ a {
   margin-bottom: 0;
 }
 
+.timeline-group + .timeline-group {
+  margin-top: 0.75rem;
+}
+
+.timeline-group h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
 /* Contact */
 .contact-email {
   display: flex;

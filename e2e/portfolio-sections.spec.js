@@ -26,6 +26,23 @@ test.describe('Sections appear in a fixed order', () => {
   });
 });
 
+test.describe('Content comes from editable data', () => {
+  test('no placeholder content is published', async ({ page }) => {
+    await openPortfolio(page);
+
+    // Visible text plus link targets, where example addresses would hide.
+    const pageText = await page.evaluate(() =>
+      [
+        document.body.innerText,
+        ...[...document.querySelectorAll('a[href]')].map((link) => link.href),
+      ].join('\n'),
+    );
+    for (const placeholder of ['Your Name', 'Placeholder', 'example.com', 'your-username']) {
+      expect(pageText.toLowerCase()).not.toContain(placeholder.toLowerCase());
+    }
+  });
+});
+
 test.describe('Hero introduces the owner', () => {
   test('hero shows the name, role headline, and tagline', async ({ page }) => {
     await openPortfolio(page);
@@ -170,8 +187,32 @@ test.describe('Experience is a timeline', () => {
 
     for (const [index, entry] of newestFirst.entries()) {
       await expect(entries.nth(index)).toContainText(entry.company);
-      for (const highlight of entry.highlights) {
+      const highlights = entry.highlightGroups
+        ? entry.highlightGroups.flatMap((group) => group.items)
+        : entry.highlights;
+      for (const highlight of highlights) {
         await expect(entries.nth(index)).toContainText(highlight);
+      }
+    }
+  });
+
+  test('grouped highlights show each group name followed by its highlights', async ({ page }) => {
+    await openPortfolio(page);
+    const groupedRoles = experience.filter((entry) => entry.highlightGroups);
+    test.skip(groupedRoles.length === 0, 'no role in the data uses highlight groups');
+
+    for (const role of groupedRoles) {
+      const entry = region(page, 'Experience')
+        .getByRole('listitem')
+        .filter({ has: page.getByRole('heading', { level: 3, name: role.role }) });
+
+      await expect(entry.getByRole('heading', { level: 4 })).toHaveText(
+        role.highlightGroups.map((group) => group.name),
+      );
+      for (const [index, group] of role.highlightGroups.entries()) {
+        await expect(entry.locator('.timeline-group').nth(index).getByRole('listitem')).toHaveText(
+          group.items,
+        );
       }
     }
   });

@@ -1,7 +1,17 @@
 import PageSection from '../PageSection/PageSection.jsx';
 import { formatPeriod, sortNewestFirst } from '../../lib/experience.js';
 
-// Roles as an ordered timeline, newest first.
+function HighlightList({ items }) {
+  return (
+    <ul className="timeline-highlights">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
+
+// Roles as an ordered timeline, newest first. A role shows either named highlight groups or one list.
 export default function Experience({ experience }) {
   return (
     <PageSection id="experience" heading="Experience">
@@ -11,11 +21,16 @@ export default function Experience({ experience }) {
             <h3>{entry.role}</h3>
             <p className="timeline-company">{entry.company}</p>
             <p className="timeline-period">{formatPeriod(entry.start, entry.end)}</p>
-            <ul className="timeline-highlights">
-              {entry.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
-            </ul>
+            {entry.highlightGroups ? (
+              entry.highlightGroups.map((group) => (
+                <div key={group.name} className="timeline-group">
+                  <h4>{group.name}</h4>
+                  <HighlightList items={group.items} />
+                </div>
+              ))
+            ) : (
+              <HighlightList items={entry.highlights} />
+            )}
           </li>
         ))}
       </ol>

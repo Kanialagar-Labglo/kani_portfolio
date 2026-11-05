@@ -1,18 +1,21 @@
-// PLACEHOLDER CONTENT: replace with your own details.
-
 export const profile = {
-  name: 'Your Name',
-  role: 'Software Developer',
+  name: 'Kani Alagar A',
+  // Short role for the page title, link previews, and structured data.
+  role: 'Full-Stack Developer',
+  // Longer line shown under the name in the Hero; falls back to role when absent.
+  headline: 'Full-Stack Developer | Software Development | QA Automation',
+  // Shown as the logo mark in the header.
+  brandInitials: 'AK',
   // Search and link-preview summary: 150 to 160 characters.
   description:
-    'Placeholder summary: a software developer with a testing background who builds reliable, accessible web apps. Replace this with your own 150-160 characters.',
-  tagline: 'I build reliable, accessible web apps, with a tester’s eye for quality.',
-  // Optional: { src: 'images/profile.jpg', alt: 'Portrait of Your Name' } (path relative to public/).
+    'Kani Alagar A is a QA Engineer transitioning into Full-Stack Development, with experience in manual testing, API validation, automation, and web technologies.',
+  tagline: 'Building reliable software through quality testing and thoughtful development.',
+  // Optional: { src: 'images/profile.jpg', alt: 'Portrait of Kani Alagar A' } (path relative to public/).
   photo: null,
   // One to three short paragraphs.
   bio: [
-    'Placeholder bio paragraph one. Introduce yourself and what you enjoy building.',
-    'Placeholder bio paragraph two. Describe your path into software development and what you bring from it.',
+    "I'm Kani Alagar A, a Software Developer at Labglo with 3+ years of experience across development and quality assurance. I build features with HTML, CSS, JavaScript, React, Python and Odoo, and test them thoroughly: functional and regression testing, API testing with Postman, and automation with Playwright. My work includes HRMS applications, where I validate business logic and work closely with development teams to deliver reliable software.",
+    "I'm now growing into Full-Stack Development, exploring modern web technologies, Python, Playwright automation and application development. I enjoy learning new technologies, solving problems and building reliable, user-friendly applications.",
   ],
   // Optional: résumé PDF path relative to public/. Use null to hide the download buttons.
   resumePath: 'resume.pdf',
