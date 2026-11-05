@@ -2,26 +2,9 @@
 
 ## Purpose
 
-Light and dark themes that follow the device setting, can be switched, are remembered and never flash.
+Light and dark themes with dark as the default, switchable, remembered, and never flashing.
 
 ## Requirements
-
-### Requirement: Initial theme follows the system preference
-On a visit with no saved theme choice, the site SHALL use the theme that matches
-the visitor's system colour-scheme preference, and SHALL use the light theme when
-no preference is available.
-
-#### Scenario Outline: First visit matches the device setting
-- **GIVEN** the visitor has never chosen a theme on this site
-- **AND** the visitor's device prefers `<preference>`
-- **WHEN** the visitor opens the portfolio page
-- **THEN** the page is shown in the `<theme>` theme
-
-Examples:
-| preference    | theme |
-| dark          | dark  |
-| light         | light |
-| no preference | light |
 
 ### Requirement: Visitor can switch theme
 The header SHALL contain a theme toggle, always visible at every viewport width,
@@ -42,13 +25,12 @@ without reloading it.
 
 ### Requirement: Theme choice is remembered
 An explicit theme choice SHALL be remembered in the visitor's browser and SHALL
-take precedence over the system preference on later visits.
+take precedence over the dark default on later visits.
 
 #### Scenario: Choice survives a return visit
-- **GIVEN** the visitor's device prefers light
-- **AND** the visitor switched the site to the dark theme on a previous visit
+- **GIVEN** the visitor switched the site to the light theme on a previous visit
 - **WHEN** the visitor opens the portfolio page again
-- **THEN** the page is shown in the dark theme
+- **THEN** the page is shown in the light theme
 
 #### Scenario: Site still works when the choice cannot be saved
 - **GIVEN** the visitor's browser blocks site storage
@@ -63,6 +45,11 @@ The page SHALL be painted in the resolved theme from its first frame.
 - **GIVEN** the visitor previously chose the dark theme
 - **WHEN** the visitor reloads the portfolio page
 - **THEN** the first painted frame uses the dark theme's background colour
+
+#### Scenario: Returning light-theme visitor sees no dark flash
+- **GIVEN** the visitor previously chose the light theme
+- **WHEN** the visitor reloads the portfolio page
+- **THEN** the first painted frame uses the light theme's background colour
 
 ### Requirement: Accessible theme toggle
 The theme toggle SHALL have an accessible name that states the action it will
@@ -89,3 +76,19 @@ Examples:
 - **GIVEN** the visitor's device requests reduced motion
 - **WHEN** the visitor uses the theme toggle
 - **THEN** the colours change without an animated transition
+
+### Requirement: Dark theme by default
+On a visit with no saved theme choice, the site SHALL use the dark theme,
+whatever the visitor's system colour-scheme preference.
+
+#### Scenario Outline: First visit is dark
+- **GIVEN** the visitor has never chosen a theme on this site
+- **AND** the visitor's device prefers `<preference>`
+- **WHEN** the visitor opens the portfolio page
+- **THEN** the page is shown in the dark theme from its first painted frame
+
+Examples:
+| preference    |
+| dark          |
+| light         |
+| no preference |
