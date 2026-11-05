@@ -153,7 +153,10 @@ test.describe('Active section highlighting', () => {
     await openPortfolio(page);
     await useShortViewport(page);
 
-    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    // Jump straight there: a smooth scroll can be cut short when the mobile menu opens.
+    await page.evaluate(() =>
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }),
+    );
     const links = await sectionLinks(page);
 
     await expect(links.getByRole('link', { name: 'Contact', exact: true })).toHaveAttribute(

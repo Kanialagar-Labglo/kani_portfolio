@@ -59,8 +59,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 8. Résumé placeholder removal (`resume-download`)
 
-- [ ] 8.1 [qa] Change the download e2e test to serve its own small PDF through `page.route`, so it does not depend on `public/resume.pdf`
-- [ ] 8.2 [dev] Delete `public/resume.pdf`; confirm the production preview shows the "unavailable" notice and all résumé e2e tests pass
+- [x] 8.1 [qa] Change the download e2e test to serve its own small PDF through `page.route`, so it does not depend on `public/resume.pdf`
+- [x] 8.2 [dev] Delete `public/resume.pdf`; confirm the production preview shows the "unavailable" notice and all résumé e2e tests pass
 
 ## 9. Quality gates (`site-quality`)
 
