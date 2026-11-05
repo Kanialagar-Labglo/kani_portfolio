@@ -6,20 +6,20 @@ import { goToSection } from './support/navigation.js';
 
 test.describe('Supported browsers', () => {
   test('core journey: open, go to Projects, switch theme', async ({ page }) => {
-    await openPortfolio(page, { systemTheme: 'light' });
+    await openPortfolio(page);
 
     await goToSection(page, 'Projects');
     await expect(page.getByRole('heading', { level: 2, name: 'Projects' })).toBeInViewport();
 
     await themeToggle(page).click();
-    await expect.poll(() => getVisibleTheme(page)).toBe('dark');
+    await expect.poll(() => getVisibleTheme(page)).toBe('light');
   });
 });
 
 test.describe('Accessibility', () => {
   for (const theme of ['light', 'dark']) {
     test(`automated check finds no serious issues in the ${theme} theme`, async ({ page }) => {
-      await openPortfolio(page, { systemTheme: theme });
+      await openPortfolio(page, { theme });
       await expect.poll(() => getVisibleTheme(page)).toBe(theme);
 
       await expectNoSeriousA11yViolations(page);

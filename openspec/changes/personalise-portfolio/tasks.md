@@ -40,9 +40,9 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 6. Dark theme by default (`theme-toggle`)
 
-- [ ] 6.1 [qa] Update e2e: first visit is dark for dark, light, and no system preference, from the first painted frame; a saved light choice survives a return visit and reload with no dark flash; keep the existing dark-choice, blocked-storage, label, keyboard, and reduced-motion tests
-- [ ] 6.2 [dev] TDD `resolveTheme`: a saved valid theme wins, otherwise dark; drop the system-preference input
-- [ ] 6.3 [dev] Update the `index.html` boot script to the same rule (saved, then dark) and its comment; update the SEO plugin to emit one dark `theme-color` tag and its unit tests; 6.1 passes
+- [x] 6.1 [qa] Update e2e: first visit is dark for dark, light, and no system preference, from the first painted frame; a saved light choice survives a return visit and reload with no dark flash; keep the existing dark-choice, blocked-storage, label, keyboard, and reduced-motion tests
+- [x] 6.2 [dev] TDD `resolveTheme`: a saved valid theme wins, otherwise dark; drop the system-preference input
+- [x] 6.3 [dev] Update the `index.html` boot script to the same rule (saved, then dark) and its comment; update the SEO plugin to emit one dark `theme-color` tag and its unit tests; 6.1 passes
 
 ## 7. Visual style (`visual-style`)
 

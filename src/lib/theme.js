@@ -1,5 +1,5 @@
-// Theme rules. The inline boot script in index.html repeats resolveTheme's order
-// (saved choice, then system preference, then light); keep the two in sync.
+// Theme rules. The inline boot script in index.html repeats resolveTheme's rule
+// (saved choice, otherwise dark); keep the two in sync.
 
 export const THEMES = ['light', 'dark'];
 export const THEME_STORAGE_KEY = 'theme';
@@ -31,13 +31,11 @@ export function saveTheme(storage, theme) {
 }
 
 /**
- * Pick the theme to show: a saved choice wins, then the system preference, then light.
- * @param {{ saved: string | null, systemPrefersDark: boolean }} input
+ * Pick the theme to show: a saved choice wins, otherwise the dark default.
+ * The device colour-scheme preference is deliberately not used.
+ * @param {{ saved: string | null }} input
  * @returns {'light' | 'dark'}
  */
-export function resolveTheme({ saved, systemPrefersDark }) {
-  if (THEMES.includes(saved)) {
-    return saved;
-  }
-  return systemPrefersDark ? 'dark' : 'light';
+export function resolveTheme({ saved }) {
+  return THEMES.includes(saved) ? saved : 'dark';
 }

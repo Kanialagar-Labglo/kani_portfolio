@@ -86,10 +86,13 @@ describe('buildHeadTags', () => {
     );
   });
 
-  it('sets a theme colour for light and dark schemes', () => {
+  it('sets one theme colour matching the dark default theme', () => {
     const head = parseHead(buildHeadTags({ profile, socials, site }));
 
-    expect(head.querySelectorAll('meta[name="theme-color"][media]')).toHaveLength(2);
+    const themeColors = head.querySelectorAll('meta[name="theme-color"]');
+    expect(themeColors).toHaveLength(1);
+    expect(themeColors[0].hasAttribute('media')).toBe(false);
+    expect(themeColors[0].getAttribute('content')).toBe('#0f1419');
   });
 
   it('links the favicon under the base path', () => {

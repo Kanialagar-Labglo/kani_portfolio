@@ -15,10 +15,7 @@ function getInitialTheme() {
   if (THEMES.includes(applied)) {
     return applied;
   }
-  return resolveTheme({
-    saved: readSavedTheme(getStorage()),
-    systemPrefersDark: Boolean(window.matchMedia?.('(prefers-color-scheme: dark)').matches),
-  });
+  return resolveTheme({ saved: readSavedTheme(getStorage()) });
 }
 
 function applyTheme(theme) {
