@@ -8,6 +8,19 @@ a {
   color: var(--color-accent);
 }
 
+/* Developer-style display text: headings, navigation, the Hero headline, and short labels.
+   Body text keeps the system font. */
+h1,
+h2,
+h3,
+h4,
+.site-name,
+.nav-links a,
+.hero-role,
+.tag-list .ant-tag {
+  font-family: var(--font-display);
+}
+
 /* Theme colour changes ease in only when the visitor has not asked for reduced motion. */
 @media (prefers-reduced-motion: no-preference) {
   body {

@@ -92,7 +92,7 @@ describe('buildHeadTags', () => {
     const themeColors = head.querySelectorAll('meta[name="theme-color"]');
     expect(themeColors).toHaveLength(1);
     expect(themeColors[0].hasAttribute('media')).toBe(false);
-    expect(themeColors[0].getAttribute('content')).toBe('#0f1419');
+    expect(themeColors[0].getAttribute('content')).toBe('#0a0d14');
   });
 
   it('links the favicon under the base path', () => {

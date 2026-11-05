@@ -108,7 +108,11 @@ test.describe('Scrolling respects motion preferences', () => {
     await goToSection(page, name);
     await page.waitForTimeout(1000);
     const positions = await page.evaluate(() => window.__scrollPositions);
-    return [...new Set(positions.filter((position) => position > 0))];
+    // Ignore sub-pixel settling (a 1px snap after a jump), which is not an animated scroll.
+    return positions
+      .filter((position) => position > 0)
+      .filter((position, index, all) => index === 0 || Math.abs(position - all[index - 1]) > 1)
+      .filter((position, index, all) => all.indexOf(position) === index);
   }
 
   test('scrolls smoothly by default', async ({ page }) => {

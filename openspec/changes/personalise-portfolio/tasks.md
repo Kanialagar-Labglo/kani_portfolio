@@ -46,10 +46,10 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 7. Visual style (`visual-style`)
 
-- [ ] 7.1 [dev] Write a failing unit test for the theme tokens: body and muted text reach 4.5:1 and accents reach 4.5:1 for normal text against background and surface in both themes
-- [ ] 7.2 [dev] Update `tokens.css` with the dark and light palettes from design D7 (adding `--color-accent-2` and `--font-display`), pass `colorPrimary` to antd `ConfigProvider` per theme, and keep `seo.js` theme colours in step with `--color-bg`; 7.1 passes
-- [ ] 7.3 [dev] Install `@fontsource/jetbrains-mono` (exact version), add `src/styles/fonts.css` importing only `latin-400.css` and `latin-700.css`, and apply `--font-display` to headings, nav links, the Hero headline, and skill and technology labels; body stays on the system stack
-- [ ] 7.4 [qa] Write e2e tests: a section heading's computed font is JetBrains Mono and an About paragraph's is not; every font request is same-origin; headings are visible before the font finishes loading (font request delayed)
+- [x] 7.1 [dev] Write a failing unit test for the theme tokens: body and muted text reach 4.5:1 and accents reach 4.5:1 for normal text against background and surface in both themes
+- [x] 7.2 [dev] Update `tokens.css` with the dark and light palettes from design D7 (adding `--color-accent-2` and `--font-display`), pass `colorPrimary` to antd `ConfigProvider` per theme, and keep `seo.js` theme colours in step with `--color-bg`; 7.1 passes
+- [x] 7.3 [dev] Install `@fontsource/jetbrains-mono` (exact version), add `src/styles/fonts.css` importing only `latin-400.css` and `latin-700.css`, and apply `--font-display` to headings, nav links, the Hero headline, and skill and technology labels; body stays on the system stack
+- [x] 7.4 [qa] Write e2e tests: a section heading's computed font is JetBrains Mono and an About paragraph's is not; every font request is same-origin; headings are visible before the font finishes loading (font request delayed)
 - [ ] 7.5 [dev] Add the shared `.card-surface` style to project, experience, and education cards, the decorative `aria-hidden` `//` heading prefix in `PageSection`, the `>` tagline prompt, and the Hero grid background, all within contrast and without gradient behind body text
 - [ ] 7.6 [qa] Write e2e tests: hovering or focusing a project card shows a highlight and neighbouring cards keep their positions; with reduced motion every section's content is fully visible on scroll with no animation; after scrolling to the bottom every section is fully visible
 - [ ] 7.7 [dev] TDD the `useReveal` hook (adds `reveal-ready` to `<html>` only when `IntersectionObserver` exists and reduced motion is off; reveals each `data-reveal` element once; reveals elements already in view at once), add card hover/focus styles and the reveal CSS, and mark section bodies and cards with `data-reveal`; 7.4 and 7.6 pass

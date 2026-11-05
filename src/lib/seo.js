@@ -4,7 +4,7 @@
 const OG_IMAGE = { path: 'og-image.png', width: 1200, height: 630 };
 const FAVICON_PATH = 'favicon.svg';
 // Browser UI colour: the dark theme's --color-bg in src/styles/tokens.css, as every first visit is dark.
-const THEME_COLOR = '#0f1419';
+export const THEME_COLOR = '#0a0d14';
 
 const escapeAttribute = (value) =>
   String(value)

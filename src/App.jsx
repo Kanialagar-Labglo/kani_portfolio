@@ -3,6 +3,7 @@ import { ConfigProvider, notification, theme as antdTheme } from 'antd';
 import { content as defaultContent } from './data/index.js';
 import { getVisibleSections } from './lib/sections.js';
 import { useTheme } from './hooks/useTheme.js';
+import { ACCENT_COLORS } from './lib/theme.js';
 import { useActiveSection } from './hooks/useActiveSection.js';
 import { useResumeDownload } from './hooks/useResumeDownload.js';
 import SkipLink from './components/SkipLink/SkipLink.jsx';
@@ -85,6 +86,7 @@ export default function App({ content = defaultContent }) {
     <ConfigProvider
       theme={{
         algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
+        token: { colorPrimary: ACCENT_COLORS[theme] },
       }}
     >
       {noticeHolder}

@@ -4,6 +4,9 @@
 export const THEMES = ['light', 'dark'];
 export const THEME_STORAGE_KEY = 'theme';
 
+// Ant Design needs real colour values, so this repeats --color-accent from src/styles/tokens.css.
+export const ACCENT_COLORS = { dark: '#5ea8ff', light: '#0b5cad' };
+
 /**
  * Read the visitor's saved theme choice. Blocked or missing storage counts as no choice.
  * @param {Storage | undefined} storage
