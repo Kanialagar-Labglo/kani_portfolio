@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { profile } from '../src/data/profile.js';
 import { openPortfolio } from './support/page.js';
 
 const region = (page, name) => page.getByRole('main').getByRole('region', { name });
@@ -139,5 +140,35 @@ test.describe('Subtle motion that respects preferences', () => {
         .poll(() => block.evaluate((element) => getComputedStyle(element).opacity))
         .toBe('1');
     }
+  });
+});
+
+test.describe('AK brand mark', () => {
+  for (const width of [360, 1280]) {
+    test(`the logo link shows AK and is named after the owner at ${width}px`, async ({ page }) => {
+      await openPortfolio(page, { width });
+      const logo = page.getByRole('banner').getByRole('link', { name: profile.name });
+
+      await expect(logo).toBeVisible();
+      await expect(logo.getByText(profile.brandInitials, { exact: true })).toBeVisible();
+      const nameShown = await logo
+        .getByText(profile.name, { exact: true })
+        .evaluate((element) => element.getBoundingClientRect().width > 1);
+      expect(nameShown).toBe(width >= 992);
+    });
+  }
+
+  test('the browser tab icon is the AK mark', async ({ page, request }) => {
+    await openPortfolio(page);
+    const href = await page.locator('link[rel="icon"]').getAttribute('href');
+
+    const response = await request.get(new URL(href, page.url()).href);
+    const svg = await response.text();
+
+    expect(response.headers()['content-type']).toContain('image/svg+xml');
+    expect(svg).toContain(`<title>${profile.brandInitials}</title>`);
+    expect(svg).toContain('linearGradient');
+    // Drawn as shapes, not text, so it looks the same without any font installed.
+    expect(svg).not.toContain('<text');
   });
 });

@@ -53,9 +53,9 @@ Run all npm commands under Node 24 (`nvm use`).
 - [x] 7.5 [dev] Add the shared `.card-surface` style to project, experience, and education cards, the decorative `aria-hidden` `//` heading prefix in `PageSection`, the `>` tagline prompt, and the Hero grid background, all within contrast and without gradient behind body text
 - [x] 7.6 [qa] Write e2e tests: hovering or focusing a project card shows a highlight and neighbouring cards keep their positions; with reduced motion every section's content is fully visible on scroll with no animation; after scrolling to the bottom every section is fully visible
 - [x] 7.7 [dev] TDD the `useReveal` hook (adds `reveal-ready` to `<html>` only when `IntersectionObserver` exists and reduced motion is off; reveals each `data-reveal` element once; reveals elements already in view at once), add card hover/focus styles and the reveal CSS, and mark section bodies and cards with `data-reveal`; 7.4 and 7.6 pass
-- [ ] 7.8 [dev] Replace `public/favicon.svg` with the AK mark (gradient tile, outlined paths); TDD the `Header` logo: visible AK mark, full name visible from 768 px and visually hidden below, accessible name includes "Kani Alagar A"
-- [ ] 7.9 [qa] Write e2e tests: the logo link's accessible name includes "Kani Alagar A" and choosing it returns to the Hero; the page links the AK favicon
-- [ ] 7.10 [dev] Regenerate `public/og-image.png` (1200×630) with the owner's name, role, and new palette
+- [x] 7.8 [dev] Replace `public/favicon.svg` with the AK mark (gradient tile, outlined paths); TDD the `Header` logo: visible AK mark, full name visible from 768 px and visually hidden below, accessible name includes "Kani Alagar A"
+- [x] 7.9 [qa] Write e2e tests: the logo link's accessible name includes "Kani Alagar A" and choosing it returns to the Hero; the page links the AK favicon
+- [x] 7.10 [dev] Regenerate `public/og-image.png` (1200×630) with the owner's name, role, and new palette
 
 ## 8. Résumé placeholder removal (`resume-download`)
 
