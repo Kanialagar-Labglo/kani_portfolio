@@ -64,9 +64,9 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 9. Quality gates (`site-quality`)
 
-- [ ] 9.1 [dev] TDD a font budget in `scripts/bundle-size.js` and `check-bundle-size.js`: sum the bundled `.woff2` files in `dist/` and fail above 60 KB; `npm run check:size` passes for JS, CSS, and fonts
+- [x] 9.1 [dev] TDD a font budget in `scripts/bundle-size.js` and `check-bundle-size.js`: sum the bundled `.woff2` files in `dist/` and fail above 60 KB; `npm run check:size` passes for JS, CSS, and fonts
 - [x] 9.2 [qa] Make the axe scans scroll to the bottom first so revealed content is checked at full opacity; scans pass with no serious or critical violations in dark and light themes
-- [ ] 9.3 [dev] Run `npm run lhci`; Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100, LCP < 2.5 s, CLS < 0.1; fix regressions without changing budgets
+- [x] 9.3 [dev] Run `npm run lhci`; Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100, LCP < 2.5 s, CLS < 0.1; fix regressions without changing budgets
 
 ## 10. Documentation
 

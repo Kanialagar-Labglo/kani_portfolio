@@ -19,12 +19,22 @@ export function findInitialAssets(html, basePath) {
 }
 
 /**
- * Compare gzipped sizes with their budgets.
- * @param {{ js: number, css: number }} sizes bytes
- * @param {{ js: number, css: number }} budgets bytes
- * @returns {{ ok: boolean, failures: ('js' | 'css')[] }}
+ * The web font files a modern browser downloads: the woff2 files in the build.
+ * Older woff fallbacks are emitted too but never requested by supported browsers.
+ * @param {string[]} fileNames names of the files in the build's assets folder
+ * @returns {string[]}
+ */
+export function findFontFiles(fileNames) {
+  return fileNames.filter((name) => name.endsWith('.woff2'));
+}
+
+/**
+ * Compare sizes with their budgets, for every kind that has a budget.
+ * @param {Record<string, number>} sizes bytes, e.g. { js, css, fonts }
+ * @param {Record<string, number>} budgets bytes for the same kinds
+ * @returns {{ ok: boolean, failures: string[] }}
  */
 export function checkBudgets(sizes, budgets) {
-  const failures = ['js', 'css'].filter((kind) => sizes[kind] > budgets[kind]);
+  const failures = Object.keys(budgets).filter((kind) => sizes[kind] > budgets[kind]);
   return { ok: failures.length === 0, failures };
 }
