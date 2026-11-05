@@ -49,7 +49,7 @@ test.describe('Hero introduces the owner', () => {
     const hero = region(page, profile.name);
 
     await expect(hero.getByRole('heading', { level: 1 })).toHaveText(profile.name);
-    await expect(hero.getByText(profile.role, { exact: true })).toBeVisible();
+    await expect(hero.getByText(profile.headline ?? profile.role, { exact: true })).toBeVisible();
     await expect(hero.getByText(profile.tagline, { exact: true })).toBeVisible();
   });
 

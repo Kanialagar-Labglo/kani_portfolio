@@ -16,8 +16,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 2. Hero headline and grouped experience (`portfolio-sections`)
 
-- [ ] 2.1 [qa] Update e2e: the Hero shows the name, headline, and tagline; the Labglo role shows its three group names, each followed by its highlights in data order
-- [ ] 2.2 [dev] TDD `Hero`: show `profile.headline`, falling back to `profile.role` when it is absent
+- [x] 2.1 [qa] Update e2e: the Hero shows the name, headline, and tagline; the Labglo role shows its three group names, each followed by its highlights in data order
+- [x] 2.2 [dev] TDD `Hero`: show `profile.headline`, falling back to `profile.role` when it is absent
 - [x] 2.3 [dev] TDD `Experience`: render `highlightGroups` as an `h4` per group followed by its list, and keep the flat `highlights` list working; heading order stays h2 → h3 → h4
 
 ## 3. Education (`education`)

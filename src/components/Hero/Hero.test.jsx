@@ -24,6 +24,14 @@ describe('Hero', () => {
     expect(screen.getByText('I build reliable web apps.')).toBeInTheDocument();
   });
 
+  it('shows the headline instead of the role when one is provided', () => {
+    const withHeadline = { ...profile, headline: 'Software Developer | QA Automation' };
+    render(<Hero profile={withHeadline} visibleSectionIds={allSections} />);
+
+    expect(screen.getByText('Software Developer | QA Automation')).toBeInTheDocument();
+    expect(screen.queryByText('Software Developer', { exact: true })).not.toBeInTheDocument();
+  });
+
   it('offers actions that lead to Projects and Contact', () => {
     render(<Hero profile={profile} visibleSectionIds={allSections} />);
 
