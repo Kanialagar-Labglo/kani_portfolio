@@ -70,7 +70,7 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 10. Documentation
 
-- [ ] 10.1 [dev] Update `README.md`: content now real, how to add `public/resume.pdf` and a profile photo later, where the WhatsApp number and education live, and the font budget
+- [x] 10.1 [dev] Update `README.md`: content now real, how to add `public/resume.pdf` and a profile photo later, where the WhatsApp number and education live, and the font budget
 
 ## 11. Verification
 

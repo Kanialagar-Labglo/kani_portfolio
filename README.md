@@ -1,7 +1,8 @@
 # Kani Portfolio
 
-A fast, accessible, single-page developer portfolio built with React and Vite,
-developed spec-first with OpenSpec.
+The personal portfolio of **Kani Alagar A**, Full-Stack Developer with a
+background in software development and QA automation. A fast, accessible,
+single-page site built with React and Vite, developed spec-first with OpenSpec.
 
 **Live site:** https://kanialagar-labglo.github.io/kani_portfolio/
 
@@ -10,6 +11,7 @@ developed spec-first with OpenSpec.
 - React + Vite, JavaScript only (no TypeScript), ES modules
 - Bootstrap (layout and utilities) + Ant Design (interactive components)
 - Lucide icons
+- JetBrains Mono display font, self-hosted with Fontsource (ADR-0005); dark theme by default
 - Vitest + React Testing Library (unit), Playwright + axe (end-to-end and accessibility)
 - Lighthouse CI and a bundle-size budget
 - Hosted on GitHub Pages, deployed by GitHub Actions
@@ -38,7 +40,7 @@ npm run dev
 | `npm run format` | Format with Prettier |
 | `npm run e2e` | Run Playwright tests in four browser setups |
 | `npm run e2e:ui` | Open the Playwright UI |
-| `npm run check:size` | Check the gzipped JS/CSS budget (run after `build`) |
+| `npm run check:size` | Check the JS/CSS (gzipped) and web font budgets (run after `build`) |
 | `npm run lhci` | Build and run the Lighthouse CI audit |
 
 First-time Playwright setup: `npx playwright install --with-deps chromium firefox webkit`
@@ -49,21 +51,26 @@ All content lives in `src/data/`. Change the data, not the components.
 
 | File | Contains |
 | --- | --- |
-| `profile.js` | Name, role, description, tagline, photo, bio, résumé path |
+| `profile.js` | Name, short role, Hero headline, description, tagline, logo initials, photo, bio, résumé path |
 | `skills.js` | Skill groups |
 | `projects.js` | Projects with optional source/live links and screenshots |
-| `experience.js` | Roles (`YYYY-MM` dates; `end: null` for a current role) |
-| `socials.js` | Email and social profile links |
+| `experience.js` | Roles (`YYYY-MM` dates; `end: null` for a current role) with either `highlights` or named `highlightGroups` |
+| `education.js` | Qualifications with institution and completion year (shown newest first) |
+| `socials.js` | Email, WhatsApp number and greeting (shown as a button, never as text), and social profile links |
 
 An empty list hides its section and its navigation link.
 
-### Replace before going live
+### Still to add
 
-- [ ] Every value in `src/data/` (currently placeholders)
-- [ ] `description` in `profile.js` (150–160 characters, used by search and link previews)
-- [ ] `public/resume.pdf`, your résumé (set `resumePath: null` to hide the download buttons)
-- [ ] `public/og-image.png`, the 1200×630 link-preview image
-- [ ] Optional: a profile photo in `public/` and `photo` in `profile.js`
+- [ ] **Résumé:** put your PDF at `public/resume.pdf`. Until then the download
+      buttons show a friendly "unavailable" notice pointing to Contact. No code
+      change is needed.
+- [ ] **Profile photo (optional):** add a square image such as
+      `public/images/profile.jpg`, then set
+      `photo: { src: 'images/profile.jpg', alt: 'Portrait of Kani Alagar A' }`
+      in `profile.js`.
+- [ ] **Link-preview image:** `public/og-image.png` (1200×630) shows your name
+      and role. Regenerate it if either changes.
 
 Restart `npm run dev` after editing `profile.js` or `socials.js` so the page metadata updates.
 
@@ -84,7 +91,7 @@ that passes every check is deployed to GitHub Pages.
 | --- | --- |
 | Lighthouse (mobile) | Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100 |
 | Core Web Vitals | LCP < 2.5 s, CLS < 0.1 |
-| Bundle (gzipped) | JS ≤ 200 KB, CSS ≤ 40 KB |
+| Bundle | JS ≤ 200 KB and CSS ≤ 40 KB gzipped; web fonts ≤ 60 KB (woff2) |
 | Accessibility | No serious or critical axe issues in light and dark themes |
 
 ## How this project is built
