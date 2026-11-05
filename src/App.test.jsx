@@ -56,11 +56,7 @@ describe('App', () => {
     render(<App content={content} />);
 
     const main = screen.getByRole('main');
-    const names = within(main)
-      .getAllByRole('region')
-      .map((region) => region.getAttribute('aria-labelledby'))
-      .map((id) => document.getElementById(id).textContent);
-    expect(names).toEqual([
+    const names = [
       'Alex Doe',
       'About Me',
       'Skills',
@@ -68,7 +64,11 @@ describe('App', () => {
       'Experience',
       'Education',
       'Contact',
-    ]);
+    ];
+    // Matching by accessible name, in page order, so decorative heading text is ignored.
+    expect(within(main).getAllByRole('region')).toEqual(
+      names.map((name) => within(main).getByRole('region', { name })),
+    );
   });
 
   it("shows the owner's name as the only level-one heading", () => {
@@ -81,15 +81,10 @@ describe('App', () => {
   it('gives every other section a level-two heading', () => {
     render(<App content={content} />);
 
-    const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);
-    expect(headings).toEqual([
-      'About Me',
-      'Skills',
-      'Projects',
-      'Experience',
-      'Education',
-      'Contact',
-    ]);
+    const names = ['About Me', 'Skills', 'Projects', 'Experience', 'Education', 'Contact'];
+    expect(screen.getAllByRole('heading', { level: 2 })).toEqual(
+      names.map((name) => screen.getByRole('heading', { level: 2, name })),
+    );
   });
 
   it('offers a theme toggle in the header', () => {

@@ -59,3 +59,85 @@ test.describe('Monospace display typography', () => {
     releaseFonts();
   });
 });
+
+test.describe('Subtle motion that respects preferences', () => {
+  const borderColor = (locator) =>
+    locator.evaluate((element) => getComputedStyle(element).borderTopColor);
+  const box = async (locator) => {
+    const { x, y, width, height } = await locator.boundingBox();
+    return {
+      x: Math.round(x),
+      y: Math.round(y),
+      width: Math.round(width),
+      height: Math.round(height),
+    };
+  };
+
+  test('hovering a card highlights it and leaves the cards around it in place', async ({
+    page,
+    isMobile,
+  }) => {
+    test.skip(isMobile, 'hover is checked with a mouse on desktop browsers');
+    await openPortfolio(page, { width: 1280 });
+    const cards = region(page, 'Education').locator('.card-surface');
+    await cards.first().scrollIntoViewIfNeeded();
+    await page.mouse.move(0, 0);
+    // Let the section's scroll-in fade finish so only the hover can move anything.
+    await page.waitForFunction(() => document.getAnimations().length === 0);
+    const restingBorder = await borderColor(cards.first());
+    const neighbour = await box(cards.nth(1));
+
+    await cards.first().hover();
+
+    await expect.poll(() => borderColor(cards.first())).not.toBe(restingBorder);
+    expect(await box(cards.nth(1))).toEqual(neighbour);
+  });
+
+  test('focusing a link inside a card highlights the card', async ({ page }) => {
+    await openPortfolio(page);
+    const card = region(page, 'Projects').locator('.card-surface').first();
+    const restingBorder = await borderColor(card);
+
+    await card.getByRole('link').first().focus();
+
+    await expect.poll(() => borderColor(card)).not.toBe(restingBorder);
+  });
+
+  test('with reduced motion every section is fully visible as soon as it is reached', async ({
+    page,
+  }) => {
+    await openPortfolio(page, { reducedMotion: true });
+    const blocks = page.locator('[data-reveal]');
+    expect(await blocks.count()).toBeGreaterThan(0);
+
+    for (const block of await blocks.all()) {
+      await block.evaluate((element) => element.scrollIntoView({ behavior: 'instant' }));
+      const style = await block.evaluate((element) => {
+        const computed = getComputedStyle(element);
+        return { opacity: computed.opacity, transform: computed.transform };
+      });
+      expect(style).toEqual({ opacity: '1', transform: 'none' });
+    }
+  });
+
+  test('after scrolling to the bottom every section is fully visible', async ({ page }) => {
+    await openPortfolio(page);
+    const blocks = page.locator('[data-reveal]');
+    expect(await blocks.count()).toBeGreaterThan(0);
+
+    // Scroll down a screen at a time, as a visitor would.
+    await page.evaluate(async () => {
+      while (window.scrollY + window.innerHeight < document.documentElement.scrollHeight - 1) {
+        window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'instant' });
+        await new Promise((resolve) => requestAnimationFrame(() => setTimeout(resolve, 50)));
+      }
+    });
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+
+    for (const block of await blocks.all()) {
+      await expect
+        .poll(() => block.evaluate((element) => getComputedStyle(element).opacity))
+        .toBe('1');
+    }
+  });
+});

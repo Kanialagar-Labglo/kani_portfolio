@@ -59,7 +59,8 @@ test.describe('Hero introduces the owner', () => {
 
     await expect(hero.getByRole('heading', { level: 1 })).toHaveText(profile.name);
     await expect(hero.getByText(profile.headline ?? profile.role, { exact: true })).toBeVisible();
-    await expect(hero.getByText(profile.tagline, { exact: true })).toBeVisible();
+    // The tagline follows a decorative prompt marker, so match it within its paragraph.
+    await expect(hero.getByText(profile.tagline)).toBeVisible();
   });
 
   test('hero offers View projects and Contact actions', async ({ page }) => {

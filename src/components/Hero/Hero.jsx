@@ -14,7 +14,12 @@ export default function Hero({ profile, visibleSectionIds, resume }) {
     <PageSection id="hero" heading={profile.name} headingLevel={1} className="hero">
       <div className="hero-body">
         <p className="hero-role">{profile.headline ?? profile.role}</p>
-        <p className="hero-tagline">{profile.tagline}</p>
+        <p className="hero-tagline">
+          <span className="hero-prompt" aria-hidden="true">
+            {'> '}
+          </span>
+          {profile.tagline}
+        </p>
         {(actions.length > 0 || resume) && (
           <div className="hero-actions">
             {actions.map((action) => (

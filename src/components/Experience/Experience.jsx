@@ -17,7 +17,7 @@ export default function Experience({ experience }) {
     <PageSection id="experience" heading="Experience">
       <ol className="timeline">
         {sortNewestFirst(experience).map((entry) => (
-          <li key={`${entry.company}-${entry.start}`} className="timeline-item">
+          <li key={`${entry.company}-${entry.start}`} className="timeline-item card-surface">
             <h3>{entry.role}</h3>
             <p className="timeline-company">{entry.company}</p>
             <p className="timeline-period">{formatPeriod(entry.start, entry.end)}</p>

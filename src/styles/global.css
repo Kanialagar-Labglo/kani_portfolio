@@ -120,6 +120,96 @@ h4,
   margin-bottom: 1.25rem;
 }
 
+/* Code-style details: decorative only, never behind body text. */
+.heading-marker {
+  color: var(--color-accent-2);
+  font-weight: 400;
+}
+
+.page-section h2::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  background-image: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+}
+
+.hero-prompt {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+}
+
+/* Faint grid behind the Hero only; the fade applies to the grid layer, not the text. */
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  background-position: -1px -1px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+}
+
+/* Shared card surface for projects, experience, and education. */
+.card-surface {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: var(--color-surface);
+}
+
+/* Hover and keyboard focus inside a card highlight it. The lift is a transform, so the cards
+   around it never move. */
+.card-surface:hover,
+.card-surface:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0.75rem 1.5rem -1rem var(--color-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-surface {
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .card-surface:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Scroll-in fade. Content is visible unless useReveal has switched this on (html.reveal-ready). */
+.reveal-ready [data-reveal]:not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 .page-section h3 {
   font-size: 1.15rem;
   font-weight: 600;
@@ -249,9 +339,6 @@ h4,
 /* Project cards */
 .project-card {
   height: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem;
-  background-color: var(--color-surface);
   overflow: hidden;
 }
 
@@ -289,9 +376,6 @@ h4,
 .education-card {
   height: 100%;
   padding: 1.25rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem;
-  background-color: var(--color-surface);
 }
 
 .education-institution {
@@ -314,15 +398,17 @@ h4,
 
 .timeline-item {
   position: relative;
-  padding-inline-start: 1.5rem;
-  padding-bottom: 1.5rem;
+  margin-inline-start: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
 }
 
+/* The dot sits on the timeline line, outside the card. */
 .timeline-item::before {
   content: '';
   position: absolute;
-  inset-inline-start: -7px;
-  top: 0.4rem;
+  inset-inline-start: calc(-1.25rem - 7px);
+  top: 1.6rem;
   width: 12px;
   height: 12px;
   border-radius: 50%;

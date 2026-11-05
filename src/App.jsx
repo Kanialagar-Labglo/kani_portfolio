@@ -6,6 +6,7 @@ import { useTheme } from './hooks/useTheme.js';
 import { ACCENT_COLORS } from './lib/theme.js';
 import { useActiveSection } from './hooks/useActiveSection.js';
 import { useResumeDownload } from './hooks/useResumeDownload.js';
+import { useReveal } from './hooks/useReveal.js';
 import SkipLink from './components/SkipLink/SkipLink.jsx';
 import Header from './components/Header/Header.jsx';
 import Hero from './components/Hero/Hero.jsx';
@@ -48,6 +49,7 @@ export default function App({ content = defaultContent }) {
   const visibleSectionIds = sections.map((section) => section.id);
   const { theme, toggleTheme } = useTheme();
   const activeId = useActiveSection(visibleSectionIds);
+  useReveal();
   // Hook form so the notice follows the ConfigProvider theme.
   const [noticeApi, noticeHolder] = notification.useNotification();
 

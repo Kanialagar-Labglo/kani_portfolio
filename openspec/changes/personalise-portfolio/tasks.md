@@ -50,9 +50,9 @@ Run all npm commands under Node 24 (`nvm use`).
 - [x] 7.2 [dev] Update `tokens.css` with the dark and light palettes from design D7 (adding `--color-accent-2` and `--font-display`), pass `colorPrimary` to antd `ConfigProvider` per theme, and keep `seo.js` theme colours in step with `--color-bg`; 7.1 passes
 - [x] 7.3 [dev] Install `@fontsource/jetbrains-mono` (exact version), add `src/styles/fonts.css` importing only `latin-400.css` and `latin-700.css`, and apply `--font-display` to headings, nav links, the Hero headline, and skill and technology labels; body stays on the system stack
 - [x] 7.4 [qa] Write e2e tests: a section heading's computed font is JetBrains Mono and an About paragraph's is not; every font request is same-origin; headings are visible before the font finishes loading (font request delayed)
-- [ ] 7.5 [dev] Add the shared `.card-surface` style to project, experience, and education cards, the decorative `aria-hidden` `//` heading prefix in `PageSection`, the `>` tagline prompt, and the Hero grid background, all within contrast and without gradient behind body text
-- [ ] 7.6 [qa] Write e2e tests: hovering or focusing a project card shows a highlight and neighbouring cards keep their positions; with reduced motion every section's content is fully visible on scroll with no animation; after scrolling to the bottom every section is fully visible
-- [ ] 7.7 [dev] TDD the `useReveal` hook (adds `reveal-ready` to `<html>` only when `IntersectionObserver` exists and reduced motion is off; reveals each `data-reveal` element once; reveals elements already in view at once), add card hover/focus styles and the reveal CSS, and mark section bodies and cards with `data-reveal`; 7.4 and 7.6 pass
+- [x] 7.5 [dev] Add the shared `.card-surface` style to project, experience, and education cards, the decorative `aria-hidden` `//` heading prefix in `PageSection`, the `>` tagline prompt, and the Hero grid background, all within contrast and without gradient behind body text
+- [x] 7.6 [qa] Write e2e tests: hovering or focusing a project card shows a highlight and neighbouring cards keep their positions; with reduced motion every section's content is fully visible on scroll with no animation; after scrolling to the bottom every section is fully visible
+- [x] 7.7 [dev] TDD the `useReveal` hook (adds `reveal-ready` to `<html>` only when `IntersectionObserver` exists and reduced motion is off; reveals each `data-reveal` element once; reveals elements already in view at once), add card hover/focus styles and the reveal CSS, and mark section bodies and cards with `data-reveal`; 7.4 and 7.6 pass
 - [ ] 7.8 [dev] Replace `public/favicon.svg` with the AK mark (gradient tile, outlined paths); TDD the `Header` logo: visible AK mark, full name visible from 768 px and visually hidden below, accessible name includes "Kani Alagar A"
 - [ ] 7.9 [qa] Write e2e tests: the logo link's accessible name includes "Kani Alagar A" and choosing it returns to the Hero; the page links the AK favicon
 - [ ] 7.10 [dev] Regenerate `public/og-image.png` (1200×630) with the owner's name, role, and new palette
@@ -65,7 +65,7 @@ Run all npm commands under Node 24 (`nvm use`).
 ## 9. Quality gates (`site-quality`)
 
 - [ ] 9.1 [dev] TDD a font budget in `scripts/bundle-size.js` and `check-bundle-size.js`: sum the bundled `.woff2` files in `dist/` and fail above 60 KB; `npm run check:size` passes for JS, CSS, and fonts
-- [ ] 9.2 [qa] Make the axe scans scroll to the bottom first so revealed content is checked at full opacity; scans pass with no serious or critical violations in dark and light themes
+- [x] 9.2 [qa] Make the axe scans scroll to the bottom first so revealed content is checked at full opacity; scans pass with no serious or critical violations in dark and light themes
 - [ ] 9.3 [dev] Run `npm run lhci`; Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100, LCP < 2.5 s, CLS < 0.1; fix regressions without changing budgets
 
 ## 10. Documentation

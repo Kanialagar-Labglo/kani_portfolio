@@ -6,7 +6,7 @@ export default function ProjectCard({ project }) {
   const { title, description, technologies, sourceUrl, liveUrl, screenshot } = project;
 
   return (
-    <article className="project-card">
+    <article className="project-card card-surface">
       {screenshot && (
         <img
           className="project-card-image"
