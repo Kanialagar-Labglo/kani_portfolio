@@ -29,7 +29,7 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 4. Navigation (`site-navigation`)
 
-- [ ] 4.1 [qa] Update e2e: nav links read Home, About Me, Skills, Projects, Experience, Education, Contact in order (inline and in the mobile menu); choosing Home from Contact brings the Hero into view and marks Home current; update section-name lists in the existing navigation and layout tests
+- [x] 4.1 [qa] Update e2e: nav links read Home, About Me, Skills, Projects, Experience, Education, Contact in order (inline and in the mobile menu); choosing Home from Contact brings the Hero into view and marks Home current; update section-name lists in the existing navigation and layout tests
 - [x] 4.2 [dev] Make the About section heading "About Me" to match its nav label; update the affected unit tests; 4.1 passes
 
 ## 5. WhatsApp contact (`contact-links`)

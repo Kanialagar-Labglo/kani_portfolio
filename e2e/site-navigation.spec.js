@@ -43,6 +43,37 @@ test.describe('In-page section navigation', () => {
     await expect(links.getByRole('listitem').getByRole('link')).toHaveText(SECTION_LINK_NAMES);
   });
 
+  for (const width of [360, 1024]) {
+    test(`links read Home to Contact in order at ${width}px`, async ({ page }) => {
+      await openPortfolio(page, { width });
+
+      const links = await sectionLinks(page);
+
+      await expect(links.getByRole('listitem').getByRole('link')).toHaveText([
+        'Home',
+        'About Me',
+        'Skills',
+        'Projects',
+        'Experience',
+        'Education',
+        'Contact',
+      ]);
+    });
+  }
+
+  test('choosing Home from Contact shows the Hero and marks Home current', async ({ page }) => {
+    await openPortfolio(page, { width: 1024, reducedMotion: true });
+    await useShortViewport(page);
+    await scrollSectionToTop(page, 'contact');
+
+    await goToSection(page, 'Home');
+
+    await expect(page.getByRole('heading', { level: 1 })).toBeInViewport();
+    await expect(
+      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Home' }),
+    ).toHaveAttribute('aria-current', 'location');
+  });
+
   test('choosing Projects shows its heading below the header', async ({ page }) => {
     await openPortfolio(page);
     await useShortViewport(page);
