@@ -39,6 +39,16 @@ describe('getVisibleSections', () => {
     expect(ids).not.toContain(hiddenId);
   });
 
+  it('shows contact when WhatsApp is the only way to get in touch', () => {
+    const ids = getVisibleSections({
+      ...fullContent,
+      contact: { email: '', whatsapp: { number: '911' } },
+      socials: [],
+    }).map((section) => section.id);
+
+    expect(ids).toContain('contact');
+  });
+
   it('shows contact when there are social links but no email', () => {
     const ids = getVisibleSections({ ...fullContent, contact: { email: '' } }).map(
       (section) => section.id,

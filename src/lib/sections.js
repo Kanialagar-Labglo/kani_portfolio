@@ -16,7 +16,8 @@ const SECTIONS = [
   {
     id: 'contact',
     label: 'Contact',
-    hasContent: ({ contact, socials }) => Boolean(contact?.email) || hasItems(socials),
+    hasContent: ({ contact, socials }) =>
+      Boolean(contact?.email) || Boolean(contact?.whatsapp?.number) || hasItems(socials),
   },
 ];
 

@@ -34,9 +34,9 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 5. WhatsApp contact (`contact-links`)
 
-- [ ] 5.1 [qa] Write failing e2e tests: "Chat on WhatsApp" opens a `wa.me` chat with the number and greeting in a new tab, the portfolio stays open, and the opened page has no `window.opener`; the number is not visible text; Contact offers email, WhatsApp, and social links and no form
-- [ ] 5.2 [dev] TDD `src/lib/contact.js` `whatsappUrl({ number, message })`: `https://wa.me/<digits>?text=<encoded>`, non-digits stripped
-- [ ] 5.3 [dev] TDD the WhatsApp link in `Contact` (Lucide `MessageCircle` icon, visually hidden "(opens in a new tab)", `target="_blank"`, `rel="noopener noreferrer"`, hidden when no number); Contact counts as having content when only WhatsApp is set; 5.1 passes
+- [x] 5.1 [qa] Write failing e2e tests: "Chat on WhatsApp" opens a `wa.me` chat with the number and greeting in a new tab, the portfolio stays open, and the opened page has no `window.opener`; the number is not visible text; Contact offers email, WhatsApp, and social links and no form
+- [x] 5.2 [dev] TDD `src/lib/contact.js` `whatsappUrl({ number, message })`: `https://wa.me/<digits>?text=<encoded>`, non-digits stripped
+- [x] 5.3 [dev] TDD the WhatsApp link in `Contact` (Lucide `MessageCircle` icon, visually hidden "(opens in a new tab)", `target="_blank"`, `rel="noopener noreferrer"`, hidden when no number); Contact counts as having content when only WhatsApp is set; 5.1 passes
 
 ## 6. Dark theme by default (`theme-toggle`)
 

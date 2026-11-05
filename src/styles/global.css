@@ -342,6 +342,12 @@ a {
 }
 
 /* Contact */
+.contact-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .contact-email {
   display: flex;
   align-items: center;
