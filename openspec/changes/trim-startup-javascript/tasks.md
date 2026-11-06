@@ -9,8 +9,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 1. Baseline (before any code change)
 
-- [ ] 1.1 [dev] Record antd's computed styles in both themes for a skill label (`.ant-tag`) and the header icon buttons (size, padding, border, radius, font, colours, background, and the hover and active fills) into a scratch note used by groups 3 and 4
-- [ ] 1.2 [qa] Take before screenshots of the header, Skills, and Projects in dark and light, at mobile (375 px) and desktop (1280 px) widths, outside the repo, for the one-off comparison in 4.4
+- [x] 1.1 [dev] Record antd's computed styles in both themes for a skill label (`.ant-tag`) and the header icon buttons (size, padding, border, radius, font, colours, background, and the hover and active fills) into a scratch note used by groups 3 and 4
+- [x] 1.2 [qa] Take before screenshots of the header, Skills, and Projects in dark and light, at mobile (375 px) and desktop (1280 px) widths, outside the repo, for the one-off comparison in 4.4
 
 ## 2. Startup e2e tests (`site-quality`)
 
