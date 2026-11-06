@@ -81,6 +81,8 @@ test.describe('Extra used before its code has arrived', () => {
     const dialog = menuDialog(page);
     await expect(dialog).toBeVisible();
     await expect(dialog.getByRole('link', { name: 'Contact', exact: true })).toBeVisible();
+    // antd focuses the drawer's container; the next Tab reaches the first item in the menu.
+    await page.keyboard.press('Tab');
     await expect(dialog.locator(':focus')).toHaveCount(1);
 
     await page.keyboard.press('Escape');
@@ -105,5 +107,6 @@ test.describe('Extra used before its code has arrived', () => {
     await expect(resumeNotice(page)).toBeVisible();
     await resumeNotice(page).getByRole('link', { name: 'Go to Contact' }).click();
     await expect(page.getByRole('heading', { level: 2, name: 'Contact' })).toBeInViewport();
+    await expect(resumeNotice(page)).toBeHidden();
   });
 });

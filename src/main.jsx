@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-// Bootstrap and custom styles load before antd so antd's component styles win where they overlap.
+// Bootstrap and custom styles load first. antd's styles arrive later with the lazily loaded extras
+// (ADR-0006), so they still win where they overlap.
 import './styles/bootstrap.scss';
 import './styles/fonts.css';
 import './styles/tokens.css';

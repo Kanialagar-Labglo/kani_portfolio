@@ -1,7 +1,13 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { loadResumeNotice } from './lib/extras.js';
 import App from './App.jsx';
+
+vi.mock('./lib/extras.js', async (importOriginal) => {
+  const actual = await importOriginal();
+  return { ...actual, loadResumeNotice: vi.fn(actual.loadResumeNotice) };
+});
 
 const content = {
   profile: {
@@ -26,6 +32,9 @@ const content = {
   contact: { email: 'alex@example.com' },
   socials: [],
 };
+
+// Load the notice's code up front, as the idle prefetch does, so it appears quickly.
+beforeAll(() => loadResumeNotice());
 
 describe('App', () => {
   it('renders the main content landmark', () => {
@@ -173,7 +182,11 @@ describe('App', () => {
         'fetch',
         vi.fn().mockResolvedValue({ ok: false, status: 404, headers: new Headers() }),
       );
+      loadResumeNotice.mockClear();
       render(<App content={withResume} />);
+
+      // The notice's code loads only when it is needed (ADR-0006).
+      expect(loadResumeNotice).not.toHaveBeenCalled();
 
       await userEvent.click(
         within(screen.getByRole('region', { name: 'Alex Doe' })).getByRole('link', {
@@ -187,6 +200,7 @@ describe('App', () => {
         'href',
         '#contact',
       );
+      expect(loadResumeNotice).toHaveBeenCalled();
     });
   });
 

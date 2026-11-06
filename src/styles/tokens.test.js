@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { THEME_COLOR } from '../lib/seo.js';
-import { ACCENT_COLORS } from '../lib/theme.js';
+import { antdThemeConfig } from '../lib/antdTheme.js';
 
 // Read from disk: Vitest's CSS handling does not hand stylesheets to tests as text.
 const css = readFileSync(resolve(process.cwd(), 'src/styles/tokens.css'), 'utf8');
@@ -84,6 +84,6 @@ describe('theme tokens', () => {
   });
 
   it.each(['dark', 'light'])('gives antd the %s accent colour', (theme) => {
-    expect(ACCENT_COLORS[theme]).toBe(THEMES[theme]['--color-accent']);
+    expect(antdThemeConfig(theme).token.colorPrimary).toBe(THEMES[theme]['--color-accent']);
   });
 });

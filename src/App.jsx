@@ -1,12 +1,12 @@
-import { Fragment, useCallback, useEffect } from 'react';
-import { ConfigProvider, notification, theme as antdTheme } from 'antd';
+import { Fragment, lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { content as defaultContent } from './data/index.js';
 import { getVisibleSections } from './lib/sections.js';
 import { useTheme } from './hooks/useTheme.js';
-import { ACCENT_COLORS } from './lib/theme.js';
+import { loadResumeNotice } from './lib/extras.js';
 import { useActiveSection } from './hooks/useActiveSection.js';
 import { useResumeDownload } from './hooks/useResumeDownload.js';
 import { useReveal } from './hooks/useReveal.js';
+import ExtraBoundary from './components/ExtraBoundary/ExtraBoundary.jsx';
 import SkipLink from './components/SkipLink/SkipLink.jsx';
 import Header from './components/Header/Header.jsx';
 import Hero from './components/Hero/Hero.jsx';
@@ -19,7 +19,7 @@ import Contact from './components/Contact/Contact.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
 const MAIN_ID = 'main';
-const RESUME_NOTICE_KEY = 'resume-unavailable';
+const ResumeNotice = lazy(loadResumeNotice);
 
 function renderSection(section, content, visibleSectionIds, resume) {
   switch (section.id) {
@@ -50,25 +50,9 @@ export default function App({ content = defaultContent }) {
   const { theme, toggleTheme } = useTheme();
   const activeId = useActiveSection(visibleSectionIds);
   useReveal();
-  // Hook form so the notice follows the ConfigProvider theme.
-  const [noticeApi, noticeHolder] = notification.useNotification();
-
-  const showResumeUnavailable = useCallback(() => {
-    noticeApi.open({
-      key: RESUME_NOTICE_KEY,
-      role: 'alert',
-      placement: 'top',
-      title: 'Résumé unavailable',
-      description: (
-        <>
-          The résumé is temporarily unavailable. Please reach out through the Contact section.{' '}
-          <a href="#contact" onClick={() => noticeApi.destroy(RESUME_NOTICE_KEY)}>
-            Go to Contact
-          </a>
-        </>
-      ),
-    });
-  }, [noticeApi]);
+  // Each request (re)opens the notice; its antd code loads on the first one (ADR-0006).
+  const [noticeRequests, setNoticeRequests] = useState(0);
+  const showResumeUnavailable = useCallback(() => setNoticeRequests((count) => count + 1), []);
 
   const resume = useResumeDownload({
     resumePath: content.profile.resumePath,
@@ -85,13 +69,14 @@ export default function App({ content = defaultContent }) {
   }, []);
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
-        token: { colorPrimary: ACCENT_COLORS[theme] },
-      }}
-    >
-      {noticeHolder}
+    <>
+      {noticeRequests > 0 && (
+        <ExtraBoundary>
+          <Suspense fallback={null}>
+            <ResumeNotice requestId={noticeRequests} theme={theme} />
+          </Suspense>
+        </ExtraBoundary>
+      )}
       <SkipLink targetId={MAIN_ID} />
       <Header
         siteName={content.profile.name}
@@ -110,6 +95,6 @@ export default function App({ content = defaultContent }) {
         ))}
       </main>
       <Footer ownerName={content.profile.name} socials={content.socials} />
-    </ConfigProvider>
+    </>
   );
 }

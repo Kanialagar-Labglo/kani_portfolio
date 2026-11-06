@@ -33,12 +33,12 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 5. Lazy extras (`site-quality`, ADR-0006)
 
-- [ ] 5.1 [dev] TDD `antdThemeConfig(theme)` in `src/lib/theme.js` (dark or default algorithm, `colorPrimary` from `ACCENT_COLORS`); move the accent test in `tokens.test.js` to it
-- [ ] 5.2 [dev] Add `src/lib/extras.js` with `loadMenuDrawer` and `loadResumeNotice` (each a plain dynamic `import()`)
-- [ ] 5.3 [dev] TDD `MenuDrawer` (antd `Drawer` in its own `ConfigProvider`, nav links, résumé button, the Tab-wrapping focus fix); `MobileMenu` renders it with `React.lazy` inside `Suspense` from the first open and keeps it mounted; unit tests await the dialog
-- [ ] 5.4 [dev] TDD `ResumeNotice` (antd notification in its own `ConfigProvider`, opened each time `requestId` changes, with the same key, role, placement, text, and "Go to Contact" link); `App` replaces `notification.useNotification` and the app-wide `ConfigProvider` with a notice request counter and the lazy `ResumeNotice`
-- [ ] 5.5 [dev] TDD a small error boundary around each lazy extra, so a failed load renders nothing and leaves the page usable
-- [ ] 5.6 [dev] Confirm no static `antd` import remains outside `MenuDrawer` and `ResumeNotice` (grep), and reword the antd load-order comment in `main.jsx`; 2.2 and 2.4 pass
+- [x] 5.1 [dev] TDD `antdThemeConfig(theme)` in `src/lib/theme.js` (dark or default algorithm, `colorPrimary` from `ACCENT_COLORS`); move the accent test in `tokens.test.js` to it
+- [x] 5.2 [dev] Add `src/lib/extras.js` with `loadMenuDrawer` and `loadResumeNotice` (each a plain dynamic `import()`)
+- [x] 5.3 [dev] TDD `MenuDrawer` (antd `Drawer` in its own `ConfigProvider`, nav links, résumé button, the Tab-wrapping focus fix); `MobileMenu` renders it with `React.lazy` inside `Suspense` from the first open and keeps it mounted; unit tests await the dialog
+- [x] 5.4 [dev] TDD `ResumeNotice` (antd notification in its own `ConfigProvider`, opened each time `requestId` changes, with the same key, role, placement, text, and "Go to Contact" link); `App` replaces `notification.useNotification` and the app-wide `ConfigProvider` with a notice request counter and the lazy `ResumeNotice`
+- [x] 5.5 [dev] TDD a small error boundary around each lazy extra, so a failed load renders nothing and leaves the page usable
+- [x] 5.6 [dev] Confirm no static `antd` import remains outside `MenuDrawer` and `ResumeNotice` (grep), and reword the antd load-order comment in `main.jsx`; 2.2 and 2.4 pass
 
 ## 6. Idle prefetch (`site-quality`)
 

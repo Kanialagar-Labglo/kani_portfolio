@@ -36,7 +36,13 @@ export default function Header({
           <ResumeButton resume={resume} compact className="header-resume d-none d-md-inline-flex" />
         )}
         <ThemeToggle theme={theme} onToggle={onToggleTheme} />
-        <MobileMenu sections={sections} activeId={activeId} resume={resume} className="d-md-none" />
+        <MobileMenu
+          sections={sections}
+          activeId={activeId}
+          resume={resume}
+          theme={theme}
+          className="d-md-none"
+        />
       </div>
     </header>
   );
