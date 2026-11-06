@@ -17,7 +17,7 @@ h4,
 .site-name,
 .nav-links a,
 .hero-role,
-.tag-list .ant-tag {
+.tag {
   font-family: var(--font-display);
 }
 
@@ -333,8 +333,23 @@ h4,
   margin: 0 0 1rem;
 }
 
-.tag-list .ant-tag {
-  margin-inline-end: 0;
+/* A plain label, styled to match the antd tag it replaced (ADR-0006). */
+.tag {
+  display: inline-block;
+  padding-inline: 7px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tag {
+    transition: all 0.2s ease;
+  }
 }
 
 /* Project cards */

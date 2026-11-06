@@ -21,8 +21,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 3. Native labels (`site-quality`, ADR-0006)
 
-- [ ] 3.1 [dev] TDD `Skills` and `ProjectCard`: each label is a `<span class="tag">` in the existing `tag-list` items, with no antd import; update their unit tests
-- [ ] 3.2 [dev] Add `.tag` styles to `global.css` from the 1.1 values, with any new colour tokens in `tokens.css` for both themes; switch the display-font selector from `.tag-list .ant-tag` to `.tag`; extend `tokens.test.js` so new text tokens keep 4.5:1 contrast
+- [x] 3.1 [dev] TDD `Skills` and `ProjectCard`: each label is a `<span class="tag">` in the existing `tag-list` items, with no antd import; update their unit tests
+- [x] 3.2 [dev] Add `.tag` styles to `global.css` from the 1.1 values, with any new colour tokens in `tokens.css` for both themes; switch the display-font selector from `.tag-list .ant-tag` to `.tag`; extend `tokens.test.js` so new text tokens keep 4.5:1 contrast
 
 ## 4. Native icon buttons (`site-quality`, ADR-0006)
 

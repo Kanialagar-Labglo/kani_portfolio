@@ -65,6 +65,12 @@ describe('theme tokens', () => {
         }
       }
 
+      it('label text on the label background reaches 4.5:1', () => {
+        expect(
+          contrast(tokens['--color-tag-text'], tokens['--color-tag-bg']),
+        ).toBeGreaterThanOrEqual(4.5);
+      });
+
       it('button text on the accent colour reaches 4.5:1', () => {
         expect(contrast(tokens['--color-bg'], tokens['--color-accent'])).toBeGreaterThanOrEqual(
           4.5,

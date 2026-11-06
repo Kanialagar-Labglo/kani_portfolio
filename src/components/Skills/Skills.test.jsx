@@ -27,6 +27,16 @@ describe('Skills', () => {
     ).toEqual(['React', 'CSS']);
   });
 
+  it('renders each skill as a plain label, without antd (ADR-0006)', () => {
+    render(<Skills skillGroups={skillGroups} />);
+
+    const items = within(screen.getByRole('list', { name: 'Frontend' })).getAllByRole('listitem');
+    for (const item of items) {
+      expect(item.firstElementChild).toHaveClass('tag', { exact: true });
+      expect(item.firstElementChild.tagName).toBe('SPAN');
+    }
+  });
+
   it('shows no ratings or percentages', () => {
     render(<Skills skillGroups={skillGroups} />);
 

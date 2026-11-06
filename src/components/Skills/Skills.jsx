@@ -1,4 +1,3 @@
-import { Tag } from 'antd';
 import PageSection from '../PageSection/PageSection.jsx';
 
 const toId = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -18,7 +17,7 @@ export default function Skills({ skillGroups }) {
               <ul className="tag-list" aria-labelledby={headingId}>
                 {group.skills.map((skill) => (
                   <li key={skill}>
-                    <Tag>{skill}</Tag>
+                    <span className="tag">{skill}</span>
                   </li>
                 ))}
               </ul>

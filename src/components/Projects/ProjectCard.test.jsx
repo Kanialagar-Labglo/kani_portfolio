@@ -36,6 +36,18 @@ describe('ProjectCard', () => {
     ).toEqual(['React', 'Vite']);
   });
 
+  it('renders each technology as a plain label, without antd (ADR-0006)', () => {
+    render(<ProjectCard project={project} />);
+
+    const items = within(screen.getByRole('list', { name: 'Technologies' })).getAllByRole(
+      'listitem',
+    );
+    for (const item of items) {
+      expect(item.firstElementChild).toHaveClass('tag', { exact: true });
+      expect(item.firstElementChild.tagName).toBe('SPAN');
+    }
+  });
+
   it('opens the source code in a new tab without access to the portfolio', () => {
     render(<ProjectCard project={project} />);
 

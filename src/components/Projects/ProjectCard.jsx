@@ -1,4 +1,3 @@
-import { Tag } from 'antd';
 import { CodeXml, ExternalLink } from 'lucide-react';
 
 // A project card. Links open in a new tab without giving that page access to the portfolio.
@@ -25,7 +24,7 @@ export default function ProjectCard({ project }) {
           <ul className="tag-list" aria-label="Technologies">
             {technologies.map((technology) => (
               <li key={technology}>
-                <Tag>{technology}</Tag>
+                <span className="tag">{technology}</span>
               </li>
             ))}
           </ul>
