@@ -77,4 +77,4 @@ Run all npm commands under Node 24 (`nvm use`).
 - [x] 11.1 [dev] Run `npm run lint`, `npx prettier --check .`, `npm test`, `npm run build`, `npm run check:size`, and `npm run e2e`; all pass
 - [x] 11.2 [qa] Confirm every scenario in this change's `specs/` maps to at least one passing unit or e2e test, and record the map and any gaps in `verification.md`
 - [x] 11.3 [dev] Run `openspec validate personalise-portfolio --type change --strict`
-- [ ] 11.4 [owner] After deployment, check the live site on a phone and a desktop, and a link preview showing the new image
+- [x] 11.4 [owner] After deployment, check the live site on a phone and a desktop, and a link preview showing the new image
