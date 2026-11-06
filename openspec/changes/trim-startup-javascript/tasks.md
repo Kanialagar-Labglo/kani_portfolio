@@ -14,10 +14,10 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 2. Startup e2e tests (`site-quality`)
 
-- [ ] 2.1 [qa] Add `e2e/startup-javascript.spec.js` with a helper that records every JavaScript response and whether its body contains antd's drawer or notification code (class prefixes, not chunk names)
-- [ ] 2.2 [qa] Write failing e2e tests for "First view loads without the extras": by the `load` event, no recorded script contains the extras; the theme toggle switches theme, and the menu button (mobile) and skill and technology labels are visible
-- [ ] 2.3 [qa] Write e2e tests for "Extras are fetched when the browser is idle": with no interaction, a script containing the extras arrives after load
-- [ ] 2.4 [qa] Write e2e tests for "Extra used before its code has arrived": hold back extras scripts with `page.route`, open the mobile menu (or trigger the unavailable résumé), release the scripts, and check that the drawer (focus inside, Escape closes, focus returns) or the notice ("Go to Contact" works) appears
+- [x] 2.1 [qa] Add `e2e/startup-javascript.spec.js` with a helper that records every JavaScript response and whether its body contains antd's drawer or notification code (class prefixes, not chunk names)
+- [x] 2.2 [qa] Write failing e2e tests for "First view loads without the extras": by the `load` event, no recorded script contains the extras; the theme toggle switches theme, and the menu button (mobile) and skill and technology labels are visible
+- [x] 2.3 [qa] Write e2e tests for "Extras are fetched when the browser is idle": with no interaction, a script containing the extras arrives after load
+- [x] 2.4 [qa] Write e2e tests for "Extra used before its code has arrived": hold back extras scripts with `page.route`, open the mobile menu (or trigger the unavailable résumé), release the scripts, and check that the drawer (focus inside, Escape closes, focus returns) or the notice ("Go to Contact" works) appears
 
 ## 3. Native labels (`site-quality`, ADR-0006)
 
