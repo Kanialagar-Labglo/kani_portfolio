@@ -26,10 +26,10 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 4. Native icon buttons (`site-quality`, ADR-0006)
 
-- [ ] 4.1 [dev] TDD `ThemeToggle` as a native `<button type="button" class="icon-button">` with the same accessible name and click behaviour, and no antd import
-- [ ] 4.2 [dev] TDD the `MobileMenu` trigger as a native `icon-button` keeping `aria-label`, `aria-expanded`, `aria-controls`, and focus return
-- [ ] 4.3 [dev] Add `.icon-button` styles from the 1.1 values (hover and active fills, transitions under the reduced-motion rules); the existing `:focus-visible` outline applies
-- [ ] 4.4 [qa] Take after screenshots matching 1.2 and compare them; the owner reviews any visible difference before continuing; the existing visual-style, theme-toggle, and axe e2e suites pass
+- [x] 4.1 [dev] TDD `ThemeToggle` as a native `<button type="button" class="icon-button">` with the same accessible name and click behaviour, and no antd import
+- [x] 4.2 [dev] TDD the `MobileMenu` trigger as a native `icon-button` keeping `aria-label`, `aria-expanded`, `aria-controls`, and focus return
+- [x] 4.3 [dev] Add `.icon-button` styles from the 1.1 values (hover and active fills, transitions under the reduced-motion rules); the existing `:focus-visible` outline applies
+- [x] 4.4 [qa] Take after screenshots matching 1.2 and compare them; the owner reviews any visible difference before continuing; the existing visual-style, theme-toggle, and axe e2e suites pass
 
 ## 5. Lazy extras (`site-quality`, ADR-0006)
 

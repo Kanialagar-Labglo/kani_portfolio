@@ -97,6 +97,36 @@ h4,
   }
 }
 
+/* Round icon-only button (theme toggle, menu), matching the antd text button it replaced
+   (ADR-0006). Keyboard focus uses the site's standard :focus-visible ring. */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-control-text);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background-color: var(--color-control-hover);
+}
+
+.icon-button:active {
+  background-color: var(--color-control-active);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .icon-button {
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+}
+
 .nav-links {
   list-style: none;
   padding: 0;

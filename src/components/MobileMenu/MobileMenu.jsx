@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Drawer } from 'antd';
+import { Drawer } from 'antd';
 import { Menu } from 'lucide-react';
 import NavLinks from '../NavLinks/NavLinks.jsx';
 import ResumeButton from '../ResumeButton/ResumeButton.jsx';
@@ -57,16 +57,17 @@ export default function MobileMenu({ sections, activeId, resume, className = '' 
 
   return (
     <div className={className}>
-      <Button
+      <button
         ref={buttonRef}
-        type="text"
-        shape="circle"
+        type="button"
+        className="icon-button"
         aria-label="Open menu"
         aria-expanded={open}
         aria-controls={MENU_ID}
-        icon={<Menu size={20} aria-hidden="true" />}
         onClick={() => setOpen(true)}
-      />
+      >
+        <Menu size={20} aria-hidden="true" />
+      </button>
       <Drawer
         id={MENU_ID}
         rootClassName={ROOT_CLASS}

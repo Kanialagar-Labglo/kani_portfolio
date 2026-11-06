@@ -13,6 +13,15 @@ describe('ThemeToggle', () => {
     expect(screen.getByRole('button', { name })).toBeInTheDocument();
   });
 
+  it('is a native icon button, without antd (ADR-0006)', () => {
+    render(<ThemeToggle theme="dark" onToggle={() => {}} />);
+
+    const button = screen.getByRole('button', { name: 'Switch to light theme' });
+    expect(button).toHaveAttribute('type', 'button');
+    expect(button).toHaveClass('icon-button', { exact: true });
+    expect(button.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
+  });
+
   it('asks to switch theme when chosen', async () => {
     const onToggle = vi.fn();
     render(<ThemeToggle theme="light" onToggle={onToggle} />);
