@@ -61,4 +61,4 @@ Run all npm commands under Node 24 (`nvm use`).
 - [x] 9.1 [dev] Run `npm run lint`, `npx prettier --check .`, `npm test`, `npm run build`, `npm run check:size`, and `npm run e2e`; all pass
 - [x] 9.2 [qa] Confirm every scenario in this change's `specs/` maps to at least one passing unit or e2e test, and record the map and any gaps in `verification.md`
 - [x] 9.3 [dev] Run `openspec validate trim-startup-javascript --type change --strict`
-- [ ] 9.4 [owner] After deployment, check on a phone that the menu opens on the first tap and the labels and buttons look unchanged; confirm the CI Lighthouse job passes on both the PR and the push run
+- [x] 9.4 [owner] After deployment, check on a phone that the menu opens on the first tap and the labels and buttons look unchanged; confirm the CI Lighthouse job passes on both the PR and the push run
