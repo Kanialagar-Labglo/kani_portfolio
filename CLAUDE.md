@@ -34,8 +34,10 @@ deployment) are decided through the OpenSpec `design` and `adr` phases, not ad h
   breakpoints so the layout works on all screen sizes (phone, tablet, desktop,
   large displays).
 - Lightweight: keep dependencies and bundle size minimal.
-  - Use Bootstrap mainly for grid, layout, and utilities; use antd for
-    interactive components. Do not use both for the same job.
+  - Use Bootstrap mainly for grid, layout, and utilities; native HTML for
+    labels and simple buttons; and antd only for complex interactive widgets
+    (drawers, notifications), loaded on demand (ADR-0006). Do not use two of
+    them for the same job.
   - Import only what is needed (per-component antd imports, individual
     Lucide icons, only the Bootstrap CSS/JS that is used).
   - Optimize images and lazy-load below-the-fold media.

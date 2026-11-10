@@ -53,8 +53,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 8. Documentation
 
-- [ ] 8.1 [dev] Update `README.md`: the 100 KB JavaScript budget in the quality-targets table, and a short note on lazy-loaded extras
-- [ ] 8.2 [dev] Propose a one-line update to the CLAUDE.md styling rule to match ADR-0006, and apply it only after the owner approves the exact wording
+- [x] 8.1 [dev] Update `README.md`: the 100 KB JavaScript budget in the quality-targets table, and a short note on lazy-loaded extras
+- [x] 8.2 [dev] Propose a one-line update to the CLAUDE.md styling rule to match ADR-0006, and apply it only after the owner approves the exact wording
 
 ## 9. Verification
 
