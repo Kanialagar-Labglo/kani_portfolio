@@ -47,9 +47,9 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 7. Budget and performance (`site-quality`)
 
-- [ ] 7.1 [dev] Build and measure the startup JavaScript; if it is not close to the expected 85 KB gzipped, stop and ask the owner before setting the budget
-- [ ] 7.2 [dev] Lower the JavaScript budget in `scripts/check-bundle-size.js` to `100 * 1024`; `npm run check:size` passes for JS, CSS, and fonts
-- [ ] 7.3 [dev] Run `npm run lhci` and compare Total Blocking Time with the current `main`; all thresholds pass. If the idle prefetch adds blocking time, add a minimum delay in `whenIdle`, and ask the owner before considering a `<link rel="prefetch">` build plugin
+- [x] 7.1 [dev] Build and measure the startup JavaScript; if it is not close to the expected 85 KB gzipped, stop and ask the owner before setting the budget
+- [x] 7.2 [dev] Lower the JavaScript budget in `scripts/check-bundle-size.js` to `100 * 1024`; `npm run check:size` passes for JS, CSS, and fonts
+- [x] 7.3 [dev] Run `npm run lhci` and compare Total Blocking Time with the current `main`; all thresholds pass. If the idle prefetch adds blocking time, add a minimum delay in `whenIdle`, and ask the owner before considering a `<link rel="prefetch">` build plugin
 
 ## 8. Documentation
 
