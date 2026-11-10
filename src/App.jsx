@@ -2,10 +2,11 @@ import { Fragment, lazy, Suspense, useCallback, useEffect, useState } from 'reac
 import { content as defaultContent } from './data/index.js';
 import { getVisibleSections } from './lib/sections.js';
 import { useTheme } from './hooks/useTheme.js';
-import { loadResumeNotice } from './lib/extras.js';
+import { loadMenuDrawer, loadResumeNotice } from './lib/extras.js';
 import { useActiveSection } from './hooks/useActiveSection.js';
 import { useResumeDownload } from './hooks/useResumeDownload.js';
 import { useReveal } from './hooks/useReveal.js';
+import { useIdlePrefetch } from './hooks/useIdlePrefetch.js';
 import ExtraBoundary from './components/ExtraBoundary/ExtraBoundary.jsx';
 import SkipLink from './components/SkipLink/SkipLink.jsx';
 import Header from './components/Header/Header.jsx';
@@ -20,6 +21,8 @@ import Footer from './components/Footer/Footer.jsx';
 
 const MAIN_ID = 'main';
 const ResumeNotice = lazy(loadResumeNotice);
+// Fetched in the background once the page is idle, so first use is normally instant.
+const EXTRA_LOADERS = [loadMenuDrawer, loadResumeNotice];
 
 function renderSection(section, content, visibleSectionIds, resume) {
   switch (section.id) {
@@ -50,6 +53,7 @@ export default function App({ content = defaultContent }) {
   const { theme, toggleTheme } = useTheme();
   const activeId = useActiveSection(visibleSectionIds);
   useReveal();
+  useIdlePrefetch(EXTRA_LOADERS);
   // Each request (re)opens the notice; its antd code loads on the first one (ADR-0006).
   const [noticeRequests, setNoticeRequests] = useState(0);
   const showResumeUnavailable = useCallback(() => setNoticeRequests((count) => count + 1), []);

@@ -42,8 +42,8 @@ Run all npm commands under Node 24 (`nvm use`).
 
 ## 6. Idle prefetch (`site-quality`)
 
-- [ ] 6.1 [dev] TDD `whenIdle(callback)` in `src/lib/idle.js`: waits for `load`, then `requestIdleCallback`, with a `setTimeout` fallback when it is missing; returns a cancel function (fake timers)
-- [ ] 6.2 [dev] TDD `useIdlePrefetch(loaders)`: runs each loader once when idle, ignores rejected loaders, cancels on unmount; call it in `App` with both loaders; 2.3 passes
+- [x] 6.1 [dev] TDD `whenIdle(callback)` in `src/lib/idle.js`: waits for `load`, then `requestIdleCallback`, with a `setTimeout` fallback when it is missing; returns a cancel function (fake timers)
+- [x] 6.2 [dev] TDD `useIdlePrefetch(loaders)`: runs each loader once when idle, ignores rejected loaders, cancels on unmount; call it in `App` with both loaders; 2.3 passes
 
 ## 7. Budget and performance (`site-quality`)
 
