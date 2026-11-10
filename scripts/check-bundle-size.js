@@ -9,7 +9,7 @@ import { checkBudgets, findFontFiles, findInitialAssets } from './bundle-size.js
 
 const DIST = 'dist';
 // Budgets from the site-quality spec. Fonts are already compressed (woff2), so they are measured as-is.
-const BUDGETS = { js: 200 * 1024, css: 40 * 1024, fonts: 60 * 1024 };
+const BUDGETS = { js: 100 * 1024, css: 40 * 1024, fonts: 60 * 1024 };
 
 const gzippedSize = (file) => gzipSync(readFileSync(join(DIST, file))).length;
 const kilobytes = (bytes) => `${(bytes / 1024).toFixed(1)} KB`;

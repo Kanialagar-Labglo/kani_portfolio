@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { loadMenuDrawer } from '../../lib/extras.js';
 import Header from './Header.jsx';
 
 const sections = [
@@ -19,6 +20,9 @@ function renderHeader(props = {}) {
     />,
   );
 }
+
+// Load the drawer's code up front, as the idle prefetch does, so first opens are quick.
+beforeAll(() => loadMenuDrawer());
 
 describe('Header', () => {
   it('links the site name back to the top of the page', () => {

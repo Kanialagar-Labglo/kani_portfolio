@@ -91,8 +91,12 @@ that passes every check is deployed to GitHub Pages.
 | --- | --- |
 | Lighthouse (mobile) | Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100 |
 | Core Web Vitals | LCP < 2.5 s, CLS < 0.1 |
-| Bundle | JS ≤ 200 KB and CSS ≤ 40 KB gzipped; web fonts ≤ 60 KB (woff2) |
+| Bundle | Startup JS ≤ 100 KB and CSS ≤ 40 KB gzipped; web fonts ≤ 60 KB (woff2) |
 | Accessibility | No serious or critical axe issues in light and dark themes |
+
+The mobile menu drawer and the résumé notice use Ant Design and load on demand, so
+they don't count towards the startup budget. Their code is downloaded in the
+background once the page is idle (ADR-0006).
 
 ## How this project is built
 

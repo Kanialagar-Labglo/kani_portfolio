@@ -17,7 +17,7 @@ h4,
 .site-name,
 .nav-links a,
 .hero-role,
-.tag-list .ant-tag {
+.tag {
   font-family: var(--font-display);
 }
 
@@ -94,6 +94,36 @@ h4,
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+}
+
+/* Round icon-only button (theme toggle, menu), matching the antd text button it replaced
+   (ADR-0006). Keyboard focus uses the site's standard :focus-visible ring. */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-control-text);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background-color: var(--color-control-hover);
+}
+
+.icon-button:active {
+  background-color: var(--color-control-active);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .icon-button {
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 }
 
@@ -333,8 +363,23 @@ h4,
   margin: 0 0 1rem;
 }
 
-.tag-list .ant-tag {
-  margin-inline-end: 0;
+/* A plain label, styled to match the antd tag it replaced (ADR-0006). */
+.tag {
+  display: inline-block;
+  padding-inline: 7px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tag {
+    transition: all 0.2s ease;
+  }
 }
 
 /* Project cards */

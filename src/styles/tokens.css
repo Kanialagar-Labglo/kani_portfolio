@@ -13,6 +13,13 @@
   --color-accent: #5ea8ff;
   --color-accent-2: #b18cff;
   --color-focus: #5ea8ff;
+  /* Skill and technology labels, matching the antd tags they replaced (ADR-0006). */
+  --color-tag-text: #dfdfdf;
+  --color-tag-bg: #272727;
+  /* Header icon buttons, matching the antd text buttons they replaced (ADR-0006). */
+  --color-control-text: rgb(255 255 255 / 0.85);
+  --color-control-hover: rgb(255 255 255 / 0.08);
+  --color-control-active: rgb(255 255 255 / 0.18);
 }
 
 :root[data-theme='light'] {
@@ -24,4 +31,9 @@
   --color-accent: #0b5cad;
   --color-accent-2: #6d3fd1;
   --color-focus: #0b5cad;
+  --color-tag-text: #1d1d1d;
+  --color-tag-bg: #f5f5f5;
+  --color-control-text: rgb(0 0 0 / 0.88);
+  --color-control-hover: rgb(0 0 0 / 0.04);
+  --color-control-active: rgb(0 0 0 / 0.15);
 }
